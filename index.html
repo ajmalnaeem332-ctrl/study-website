@@ -3,73 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTASA Edu - DAE Study Portal</title>
+    <title>DAE Education Portal | PTASA Style</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; background-color: #ffffff; }
-        .folder-item:hover { background-color: #f8fafc; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #ffffff; }
+        .folder-row:hover { background-color: #f8fafc; }
     </style>
 </head>
-<body class="text-slate-900 flex flex-col min-h-screen">
+<body class="text-slate-800 flex flex-col min-h-screen">
 
-    <!-- Header -->
-    <header class="border-b border-slate-200 bg-white sticky top-0 z-50">
+    <!-- Top Header Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
         <div class="max-w-3xl mx-auto px-4 h-14 flex justify-between items-center">
+            <button onclick="navigateTo('home')" class="font-bold text-slate-800 flex items-center gap-2 text-sm">
+                <i class="fas fa-home text-emerald-600"><span>Home</span></i>
+            </button>
             <div class="flex items-center gap-3">
-                <button onclick="goHome()" class="text-slate-700 hover:text-emerald-600 font-bold text-sm flex items-center gap-2">
-                    <i class="fas fa-home text-emerald-600 text-base"></i> PTASA Edu
-                </button>
-            </div>
-            <div class="flex items-center gap-3">
-                <button onclick="toggleMenu()" class="p-2 text-slate-700 hover:bg-slate-100 rounded">
+                <span class="text-xs font-medium text-slate-600 hidden sm:inline">DAE Study Network</span>
+                <button onclick="toggleSidebar()" class="p-2 text-slate-700 hover:bg-slate-100 rounded-md">
                     <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Slide-out Drawer Menu (Matching Screenshot 1) -->
-    <div id="drawerMenu" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity" onclick="toggleMenu()">
-        <div class="bg-white w-64 h-full shadow-xl p-5 space-y-4 flex flex-col justify-between" onclick="event.stopPropagation()">
-            <div>
-                <div class="flex justify-between items-center mb-6 border-b pb-3">
-                    <span class="font-bold text-slate-800">Menu</span>
-                    <button onclick="toggleMenu()" class="text-slate-500 hover:text-red-500"><i class="fas fa-times text-lg"></i></button>
-                </div>
-                <ul class="space-y-3 text-sm font-medium text-slate-700">
-                    <li><a href="javascript:void(0)" onclick="goHome(); toggleMenu();" class="hover:text-emerald-600 block py-1">Home</a></li>
-                    <li><a href="javascript:void(0)" onclick="openDAEHome(); toggleMenu();" class="hover:text-emerald-600 block py-1">DAE</a></li>
-                    <li><a href="javascript:void(0)" onclick="alert('DAE Hand Book section')" class="hover:text-emerald-600 block py-1">DAE Hand Book</a></li>
-                    <li><a href="javascript:void(0)" onclick="alert('Past Papers section')" class="hover:text-emerald-600 block py-1">Past Papers</a></li>
-                    <li><a href="javascript:void(0)" onclick="alert('PPSC section')" class="hover:text-emerald-600 block py-1">PPSC</a></li>
-                    <li><a href="javascript:void(0)" onclick="alert('Notifications section')" class="hover:text-emerald-600 block py-1">Notifications</a></li>
-                </ul>
-            </div>
-            <div class="text-[11px] text-slate-400 text-center border-t pt-3">
-                &copy; PTASA Edu Portal
-            </div>
+    <!-- Sidebar Drawer (Matches your screenshot style) -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black/40 z-50 hidden transition-opacity" onclick="toggleSidebar()"></div>
+    <div id="sidebar" class="fixed top-0 left-0 bottom-0 w-64 bg-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 border-b border-slate-100 flex justify-between items-center bg-slate-50">
+            <span class="font-bold text-sm text-slate-800">Navigation Menu</span>
+            <button onclick="toggleSidebar()" class="text-slate-500 hover:text-red-500 text-sm p-1"><i class="fas fa-times text-base"></i></button>
+        </div>
+        <div class="p-4 overflow-y-auto flex-grow space-y-3 text-sm font-medium text-slate-700">
+            <a href="javascript:void(0)" onclick="navigateTo('home'); toggleSidebar();" class="block py-2 px-3 rounded hover:bg-emerald-50 hover:text-emerald-700 transition">Home</a>
+            <a href="javascript:void(0)" onclick="navigateTo('dae_main'); toggleSidebar();" class="block py-2 px-3 rounded hover:bg-emerald-50 hover:text-emerald-700 transition">DAE Technologies</a>
+            <a href="javascript:void(0)" onclick="alert('DAE Hand Book section')" class="block py-2 px-3 rounded hover:bg-emerald-50 hover:text-emerald-700 transition">DAE Hand Book</a>
+            <a href="javascript:void(0)" onclick="alert('Past Papers section')" class="block py-2 px-3 rounded hover:bg-emerald-50 hover:text-emerald-700 transition">Past Papers</a>
+            <a href="javascript:void(0)" onclick="alert('PPSC section')" class="block py-2 px-3 rounded hover:bg-emerald-50 hover:text-emerald-700 transition">PPSC</a>
+            <a href="javascript:void(0)" onclick="alert('Notifications section')" class="block py-2 px-3 rounded hover:bg-emerald-50 hover:text-emerald-700 transition">Notifications</a>
+        </div>
+        <div class="p-3 border-t border-slate-100 text-[11px] text-slate-400 text-center">
+            PTASA Edu Portal &copy; 2026
         </div>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- Main Content Body -->
     <main class="max-w-3xl mx-auto px-4 py-6 flex-grow w-full">
         
-        <!-- Breadcrumb -->
-        <div class="bg-slate-100 p-2.5 rounded text-xs text-slate-600 mb-6 border border-slate-200" id="breadcrumb">
-            <span class="font-semibold text-emerald-700">Home</span> / DAE - Diploma of Associate Engineer
+        <!-- Breadcrumb Tracker -->
+        <div id="breadcrumb" class="bg-slate-100 p-2.5 rounded text-xs text-slate-600 mb-6 border border-slate-200">
+            <span class="font-semibold text-emerald-700">Home</span>
         </div>
 
+        <!-- Dynamic Page Title -->
         <h1 id="pageTitle" class="text-lg sm:text-xl font-bold mb-6 text-slate-900 border-b pb-2">
-            PBTE | DAE - DIPLOMA OF ASSOCIATE ENGINEER
+            PBTE | DAE STUDY PORTAL
         </h1>
 
-        <!-- Dynamic Folder / Content Container -->
-        <div id="contentBox" class="space-y-1 divide-y divide-slate-100 border-t border-b border-slate-200 py-2">
-            <!-- Injected via JavaScript -->
+        <!-- Folder List Container -->
+        <div id="folderContainer" class="space-y-1 divide-y divide-slate-100 border-t border-b border-slate-200 py-2">
+            <!-- Dynamic items will load here -->
         </div>
 
-        <!-- Note Section -->
+        <!-- Note / Contact Section (Matches your layout requirement) -->
         <div class="mt-10 bg-amber-50 border border-amber-200 p-4 rounded text-center text-xs text-slate-700 space-y-2">
             <h4 class="text-red-600 font-bold uppercase tracking-wider">NOTE</h4>
             <p>If you find any mistake in them, do tell in the comment, so that it can be corrected.</p>
@@ -81,15 +78,13 @@
 
     <!-- Footer -->
     <footer class="max-w-3xl mx-auto px-4 py-6 text-center text-xs text-slate-400 border-t border-slate-100 mt-10 w-full">
-        &copy; 2026 PTASA Edu Portal. All rights reserved.
+        &copy; 2026 DAE Education Network. All rights reserved.
     </footer>
 
+    <!-- JavaScript for Navigation & Interactivity -->
     <script>
-        // App State
-        let currentView = 'home'; // home, techList, yearList, subjectList, detailView
-        let selectedTech = '';
-        let selectedYear = '';
-        let selectedSubject = '';
+        // State management
+        let historyStack = [{ view: 'home', title: 'Home', name: 'PBTE | DAE STUDY PORTAL' }];
 
         const technologies = [
             "PBTE DAE Civil Technology",
@@ -105,143 +100,112 @@
             "PBTE DAE Computer Information Technology"
         ];
 
-        function render() {
-            const box = document.getElementById('contentBox');
-            const title = document.getElementById('pageTitle');
-            const breadcrumb = document.getElementById('breadcrumb');
-            box.innerHTML = '';
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
 
-            if (currentView === 'home') {
-                breadcrumb.innerHTML = `<span class="font-semibold text-emerald-700">Home</span> / DAE - Diploma of Associate Engineer`;
-                title.textContent = "PBTE | DAE - DIPLOMA OF ASSOCIATE ENGINEER";
-                
-                // Show list of main categories matching PTASA
-                let html = `
-                    <div onclick="openDAEHome()" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+        function navigateTo(view, data = {}) {
+            historyStack.push({ view, ...data });
+            renderView();
+        }
+
+        function renderView() {
+            const current = historyStack[historyStack.length - 1];
+            const container = document.getElementById('folderContainer');
+            const titleEl = document.getElementById('pageTitle');
+            const breadcrumbEl = document.getElementById('breadcrumb');
+            container.innerHTML = '';
+
+            // Build Breadcrumb HTML
+            let bcHtml = '';
+            historyStack.forEach((item, index) => {
+                if (index === 0) {
+                    bcHtml += `<span class="font-semibold text-emerald-700 cursor-pointer" onclick="jumpTo(${index})">Home</span>`;
+                } else {
+                    bcHtml += ` / <span class="font-semibold text-emerald-700 cursor-pointer" onclick="jumpTo(${index})">${item.title}</span>`;
+                }
+            });
+            breadcrumbEl.innerHTML = bcHtml;
+            titleEl.textContent = current.name;
+
+            // Render Content based on View
+            if (current.view === 'home') {
+                container.innerHTML = `
+                    <div onclick="navigateTo('dae_main', {title: 'DAE', name: 'PBTE | DAE - DIPLOMA OF ASSOCIATE ENGINEER'})" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
                         <i class="fas fa-folder text-amber-400 text-lg"></i>
                         <span class="text-sm font-medium text-slate-800">DAE - Diploma of Associate Engineer</span>
                     </div>
-                    <div onclick="alert('DAE Hand Book')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                    <div onclick="alert('DAE Hand Book folder')" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
                         <i class="fas fa-folder text-amber-400 text-lg"></i>
                         <span class="text-sm font-medium text-slate-800">DAE Hand Book</span>
                     </div>
-                    <div onclick="alert('Past Papers')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                    <div onclick="alert('Past Papers folder')" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
                         <i class="fas fa-folder text-amber-400 text-lg"></i>
                         <span class="text-sm font-medium text-slate-800">Past Papers</span>
                     </div>
-                    <div onclick="alert('PPSC')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                    <div onclick="alert('PPSC folder')" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
                         <i class="fas fa-folder text-amber-400 text-lg"></i>
                         <span class="text-sm font-medium text-slate-800">PPSC</span>
                     </div>
-                    <div onclick="alert('Notifications')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                    <div onclick="alert('Notifications folder')" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
                         <i class="fas fa-folder text-amber-400 text-lg"></i>
                         <span class="text-sm font-medium text-slate-800">Notifications</span>
                     </div>
                 `;
-                box.innerHTML = html;
             } 
-            else if (currentView === 'techList') {
-                breadcrumb.innerHTML = `<a href="javascript:void(0)" onclick="goHome()" class="text-emerald-700">Home</a> / <span class="font-semibold text-emerald-700">DAE</span>`;
-                title.textContent = "PBTE | DAE - TECHNOLOGIES";
-                
+            else if (current.view === 'dae_main') {
                 technologies.forEach(tech => {
-                    box.innerHTML += `
-                        <div onclick="selectTech('${tech}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                    container.innerHTML += `
+                        <div onclick="navigateTo('years', {title: '${tech.replace('PBTE DAE ', '')}', name: '${tech.toUpperCase()}'})" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
                             <i class="fas fa-folder text-amber-400 text-lg"></i>
                             <span class="text-sm font-medium text-slate-800">${tech}</span>
                         </div>
                     `;
                 });
             }
-            else if (currentView === 'yearList') {
-                breadcrumb.innerHTML = `<a href="javascript:void(0)" onclick="goHome()" class="text-emerald-700">Home</a> / <a href="javascript:void(0)" onclick="openDAEHome()" class="text-emerald-700">DAE</a> / <span class="font-semibold text-emerald-700">${selectedTech}</span>`;
-                title.textContent = selectedTech.toUpperCase();
-
+            else if (current.view === 'years') {
                 ['FIRST YEAR', 'SECOND YEAR', 'THIRD YEAR'].forEach(yr => {
-                    box.innerHTML += `
-                        <div onclick="selectYear('${yr}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                    container.innerHTML += `
+                        <div onclick="navigateTo('subjects', {title: '${yr}', name: '${current.name} - ${yr}'})" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
                             <i class="fas fa-folder text-amber-400 text-lg"></i>
-                            <span class="text-sm font-medium text-slate-800">${selectedTech.toUpperCase()} ${yr}</span>
+                            <span class="text-sm font-medium text-slate-800">${current.name} ${yr}</span>
                         </div>
                     `;
                 });
             }
-            else if (currentView === 'subjectList') {
-                breadcrumb.innerHTML = `<a href="javascript:void(0)" onclick="goHome()" class="text-emerald-700">Home</a> / <span class="font-semibold text-emerald-700">${selectedYear}</span>`;
-                title.textContent = `${selectedTech} - ${selectedYear}`;
-
-                let html = `<div class="font-bold text-xs text-emerald-800 uppercase tracking-wider py-2 bg-emerald-50 px-2 rounded mt-2">📚 (New Course) Updated...</div>`;
-                
-                ['TTQ 111 - Tarjuma-Tul-Quran', 'GEN 111 - Islamiat & Pak Studies', 'ENG 112 - Technical English (R-26)', 'MATH 113 - Applied Mathematics-I', 'CIVIL 124 - Civil Engineering Surveying', 'CIVIL 153 - Civil Engineering Materials'].forEach(sub => {
-                    html += `
-                        <div onclick="selectSubject('${sub}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+            else if (current.view === 'subjects') {
+                container.innerHTML += `<div class="font-bold text-xs text-emerald-800 uppercase tracking-wider py-2 bg-emerald-50 px-2 rounded mt-1">📚 (New Course) Updated...</div>`;
+                ['TTQ 111 - Tarjuma-Tul-Quran', 'GEN 111 - Islamiat & Pak Studies', 'ENG 112 - Technical English', 'MATH 113 - Applied Mathematics-I', 'CIVIL 124 - Civil Engineering Surveying'].forEach(sub => {
+                    container.innerHTML += `
+                        <div onclick="navigateTo('resources', {title: '${sub.split(' - ')[0]}', name: '${sub}'})" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
                             <i class="fas fa-folder text-amber-400 text-lg"></i>
                             <span class="text-sm font-medium text-slate-800">${sub}</span>
                         </div>
                     `;
                 });
-
-                html += `<div class="font-bold text-xs text-slate-700 uppercase tracking-wider py-2 bg-slate-100 px-2 rounded mt-4">📖 (Old Course)</div>`;
-                ['CIVIL 104 - Basic Civil Engineering Surveying', 'CIVIL 113 - Engineering Material & Construction Techniques'].forEach(sub => {
-                    html += `
-                        <div onclick="selectSubject('${sub}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
-                            <i class="fas fa-folder text-amber-400 text-lg"></i>
-                            <span class="text-sm font-medium text-slate-800">${sub}</span>
-                        </div>
-                    `;
-                });
-                box.innerHTML = html;
             }
-            else if (currentView === 'detailView') {
-                breadcrumb.innerHTML = `<a href="javascript:void(0)" onclick="goHome()" class="text-emerald-700">Home</a> / <span class="font-semibold text-emerald-700">${selectedSubject}</span>`;
-                title.textContent = selectedSubject;
-
-                ['MCQ', 'Short Questions', 'Long Questions', 'Past Papers', 'Text Book', 'Curriculum'].forEach(item => {
-                    box.innerHTML += `
-                        <div onclick="alert('Opening ${item} for ${selectedSubject}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
-                            <span class="text-emerald-600 font-bold">•</span>
-                            <span class="text-sm font-medium text-slate-800">${item}</span>
+            else if (current.view === 'resources') {
+                ['MCQ Chapters', 'Short Questions', 'Long Questions', 'Past Papers', 'Text Book'].forEach(res => {
+                    container.innerHTML += `
+                        <div onclick="alert('Opening ${res} for ${current.name}')" class="folder-row flex items-center gap-3 p-3 cursor-pointer transition">
+                            <span class="text-emerald-600 font-bold ml-1">•</span>
+                            <span class="text-sm font-medium text-slate-800">${res}</span>
                         </div>
                     `;
                 });
             }
         }
 
-        function toggleMenu() {
-            const drawer = document.getElementById('drawerMenu');
-            drawer.classList.toggle('hidden');
+        function jumpTo(index) {
+            historyStack = historyStack.slice(0, index + 1);
+            renderView();
         }
 
-        function goHome() {
-            currentView = 'home';
-            render();
-        }
-
-        function openDAEHome() {
-            currentView = 'techList';
-            render();
-        }
-
-        function selectTech(tech) {
-            selectedTech = tech;
-            currentView = 'yearList';
-            render();
-        }
-
-        function selectYear(yr) {
-            selectedYear = yr;
-            currentView = 'subjectList';
-            render();
-        }
-
-        function selectSubject(sub) {
-            selectedSubject = sub;
-            currentView = 'detailView';
-            render();
-        }
-
-        // Initial call
-        render();
+        // Initialize
+        renderView();
     </script>
 </body>
 </html>
