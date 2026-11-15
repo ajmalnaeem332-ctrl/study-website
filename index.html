@@ -1,252 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PTASA Edu - DAE & Civil Technology Study Portal</title>
+    <title>EduPortal PK | PBTE DAE Study Notes & MCQs</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; }
-        .folder-hover:hover { background-color: #f1f5f9; border-color: #cbd5e1; }
-    </style>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="text-slate-800">
+<body class="bg-slate-50 font-sans text-slate-800 antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen">
 
-    <!-- Header Navigation -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
-        <div class="max-w-4xl mx-auto px-4 h-14 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <a href="javascript:void(0)" onclick="goHome()" class="text-slate-700 hover:text-emerald-600 font-bold text-base flex items-center gap-2">
-                    <i class="fas fa-home text-emerald-600"></i> PTASA Edu
-                </a>
+    <!-- Top Navigation Bar (Original Style) -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white font-display font-bold text-xl shadow-lg shadow-brand-500/20">
+                    EP
+                </div>
+                <div>
+                    <span class="font-display font-extrabold text-lg text-slate-900 tracking-tight">EduPortal <span class="text-brand-600">PK</span></span>
+                    <span class="block text-[10px] font-semibold tracking-wider text-slate-400 uppercase">DAE Study Network</span>
+                </div>
             </div>
-            <div class="flex items-center gap-3">
-                <button onclick="toggleSearch()" class="p-2 text-slate-600 hover:text-emerald-600 bg-slate-100 rounded-full w-9 h-9 flex items-center justify-center">
-                    <i class="fas fa-search text-sm"></i>
-                </button>
+            
+            <nav class="hidden md:flex items-center space-x-1">
+                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-brand-700 bg-brand-50 transition">Home</a>
+                <a href="#categories" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition">Categories</a>
+                <a href="#notes" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition">Past Papers</a>
+                <a href="#mcqs" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-brand-600 hover:bg-slate-50 transition">MCQs Portal</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 text-brand-700 border border-brand-200">
+                    <span class="w-2 h-2 mr-1.5 bg-brand-500 rounded-full animate-pulse"></span> Live Portal
+                </span>
             </div>
         </div>
     </header>
 
-    <!-- Search Bar Expandable -->
-    <div id="searchBarContainer" class="hidden bg-slate-100 border-b border-slate-200 p-3">
-        <div class="max-w-4xl mx-auto flex items-center bg-white rounded-lg border border-slate-300 px-3 py-1.5 shadow-sm">
-            <i class="fas fa-search text-slate-400 mr-2 text-sm"></i>
-            <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="Search subjects, past papers, MCQs..." class="w-full text-xs sm:text-sm focus:outline-none">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-brand-900 via-brand-800 to-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-4">
+                PBTE DAE Study Materials & <span class="text-brand-400">Folder Navigation</span>
+            </h1>
+            <p class="text-slate-300 text-base sm:text-lg mb-8 max-w-2xl mx-auto font-normal">
+                Access structured folders for Civil, Electrical, Mechanical, and all DAE technologies with chapter-wise MCQs and past papers.
+            </p>
         </div>
-    </div>
+    </section>
 
-    <!-- Breadcrumb & Main Viewport -->
-    <main class="max-w-4xl mx-auto px-4 py-6">
-        <!-- Breadcrumb -->
-        <div class="bg-slate-100 p-3 rounded text-xs text-slate-600 mb-6 border border-slate-200" id="breadcrumb">
-            <span class="font-semibold text-emerald-700">Home</span> / <span id="breadcrumbPath">DAE - Diploma of Associate Engineer</span>
-        </div>
-
-        <h2 id="pageTitle" class="text-xl sm:text-2xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">
-            PBTE | DAE - DIPLOMA OF ASSOCIATE ENGINEER
-        </h2>
-
-        <!-- Dynamic Content Feed -->
-        <div id="contentContainer" class="space-y-3">
-            <!-- Injected via JavaScript -->
+    <!-- Main Folder Categories Section -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <div class="mb-8">
+            <h2 class="font-display font-bold text-2xl text-slate-900 mb-2">📁 DAE Technology Folders</h2>
+            <p class="text-slate-500 text-sm">Select a technology folder to view years, subjects, and chapter resources.</p>
         </div>
 
-        <!-- Note Section (Matching PTASA Footer Note) -->
-        <div class="mt-12 pt-6 border-t border-slate-200 text-center space-y-3 text-xs text-slate-600">
-            <div class="bg-amber-50 border border-amber-200 p-4 rounded-lg">
-                <h4 class="text-red-600 font-bold text-sm mb-1 uppercase">NOTE</h4>
-                <p>If you find any mistake in them, do tell in the comment, so that it can be corrected.</p>
-                <p class="mt-2 font-medium text-slate-800">If you face any issues feel free to contact me on WhatsApp</p>
-                <p class="text-emerald-700 font-bold mt-1">03129671316, 03085507292</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Folder 1 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                        📁
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-slate-900 group-hover:text-brand-600 transition">PBTE DAE Civil Technology</h3>
+                        <p class="text-xs text-slate-400">1st, 2nd & 3rd Year Folders</p>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500 border-t border-slate-100 pt-3 flex justify-between">
+                    <span>Includes: Surveying, RCC, Math</span>
+                    <span class="text-brand-600 font-semibold">Open Folder →</span>
+                </div>
             </div>
-            <p class="text-slate-400">&copy; 2026 PTASA Edu Portal. Hosted on GitHub Pages.</p>
+
+            <!-- Folder 2 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                        📁
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-slate-900 group-hover:text-brand-600 transition">PBTE DAE Electrical Technology</h3>
+                        <p class="text-xs text-slate-400">1st, 2nd & 3rd Year Folders</p>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500 border-t border-slate-100 pt-3 flex justify-between">
+                    <span>Includes: Wiring, Machines, Circuits</span>
+                    <span class="text-brand-600 font-semibold">Open Folder →</span>
+                </div>
+            </div>
+
+            <!-- Folder 3 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                        📁
+                    </div>
+                    <div>
+                        <h3 class="font-display font-bold text-slate-900 group-hover:text-brand-600 transition">PBTE DAE Mechanical Technology</h3>
+                        <p class="text-xs text-slate-400">1st, 2nd & 3rd Year Folders</p>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-500 border-t border-slate-100 pt-3 flex justify-between">
+                    <span>Includes: Workshop, Thermodynamics</span>
+                    <span class="text-brand-600 font-semibold">Open Folder →</span>
+                </div>
+            </div>
         </div>
     </main>
 
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 px-4 text-center text-xs border-t border-slate-800">
+        <p>&copy; 2026 EduPortal PK. All rights reserved. Hosted on GitHub Pages.</p>
+    </footer>
+
     <script>
-        // Data Structure mirroring PTASA hierarchy
-        const db = {
-            view: 'home', // home, techList, yearList, subjectList, materialDetail
-            selectedTech: '',
-            selectedYear: '',
-            selectedSubject: '',
-
-            homeCategories: [
-                { name: "DAE", type: "techList", icon: "folder" },
-                { name: "DAE Hand Book", type: "handbook", icon: "folder" },
-                { name: "Past Papers", type: "pastPapers", icon: "folder" },
-                { name: "PPSC", type: "ppsc", icon: "folder" },
-                { name: "Notifications", type: "notifications", icon: "folder" }
-            ],
-
-            technologies: [
-                { name: "PBTE DAE Civil Technology", id: "Civil" },
-                { name: "PBTE DAE Electrical Technology", id: "Electrical" },
-                { name: "PBTE DAE Mechanical Technology", id: "Mechanical" },
-                { name: "PBTE DAE Computer Information Technology", id: "CIT" }
-            ],
-
-            years: ["PBTE DAE CIVIL TECHNOLOGY FIRST YEAR", "PBTE DAE CIVIL TECHNOLOGY SECOND YEAR", "PBTE DAE CIVIL TECHNOLOGY THIRD YEAR"],
-
-            subjectsData: {
-                "First Year": {
-                    newCourse: [
-                        { code: "TTQ 111", name: "Tarjuma-Tul-Quran" },
-                        { code: "GEN 111", name: "Islamiat & Pak Studies" },
-                        { code: "ENG 112", name: "Technical English (R-26)" },
-                        { code: "MATH 113", name: "Applied Mathematics-I" },
-                        { code: "CIVIL 124", name: "Civil Engineering Surveying" },
-                        { code: "CIVIL 153", name: "Civil Engineering Materials & Building Construction" }
-                    ],
-                    oldCourse: [
-                        { code: "CIVIL 104", name: "Basic Civil Engineering Surveying" },
-                        { code: "CIVIL 113", name: "Engineering Material & Construction Techniques" },
-                        { code: "SHOP 102", name: "Workshop Practice" }
-                    ]
-                }
-            },
-
-            materials: [
-                { name: "MCQ", count: "50+ Questions" },
-                { name: "Short Questions", count: "Chapter Wise" },
-                { name: "Long Questions", count: "Important Derivations" },
-                { name: "Past Papers", count: "Annual 2021-2025" },
-                { name: "Text Book", count: "PDF Available" },
-                { name: "Curriculum", count: "Official Scheme" }
-            ]
-        };
-
-        function render() {
-            const container = document.getElementById('contentContainer');
-            const title = document.getElementById('pageTitle');
-            const breadcrumb = document.getElementById('breadcrumbPath');
-            container.innerHTML = '';
-
-            if (db.view === 'home') {
-                breadcrumb.textContent = "DAE - Diploma of Associate Engineer";
-                title.textContent = "PBTE | DAE - DIPLOMA OF ASSOCIATE ENGINEER";
-                db.homeCategories.forEach(cat => {
-                    container.innerHTML += `
-                        <div onclick="navigateTo('${cat.type}')" class="folder-hover flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-lg cursor-pointer transition shadow-sm">
-                            <i class="fas fa-folder text-amber-400 text-lg"></i>
-                            <span class="font-medium text-slate-800 text-sm sm:text-base">${cat.name}</span>
-                        </div>
-                    `;
-                });
-            } 
-            else if (db.view === 'techList') {
-                breadcrumb.textContent = "Home / DAE";
-                title.textContent = "PBTE DAE TECHNOLOGIES";
-                db.technologies.forEach(tech => {
-                    container.innerHTML += `
-                        <div onclick="selectTech('${tech.id}')" class="folder-hover flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-lg cursor-pointer transition shadow-sm">
-                            <i class="fas fa-folder text-amber-400 text-lg"></i>
-                            <span class="font-medium text-slate-800 text-sm sm:text-base">${tech.name}</span>
-                        </div>
-                    `;
-                });
-            }
-            else if (db.view === 'yearList') {
-                breadcrumb.textContent = `Home / DAE / ${db.selectedTech} Technology`;
-                title.textContent = `PBTE DAE ${db.selectedTech.toUpperCase()} TECHNOLOGY`;
-                db.years.forEach(yr => {
-                    container.innerHTML += `
-                        <div onclick="selectYear('${yr}')" class="folder-hover flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-lg cursor-pointer transition shadow-sm">
-                            <i class="fas fa-folder text-amber-400 text-lg"></i>
-                            <span class="font-medium text-slate-800 text-sm sm:text-base">${yr}</span>
-                        </div>
-                    `;
-                });
-            }
-            else if (db.view === 'subjectList') {
-                breadcrumb.textContent = `Home / DAE / ${db.selectedTech} / ${db.selectedYear}`;
-                title.textContent = `${db.selectedYear}`;
-                
-                let html = `<div class="font-bold text-xs text-emerald-800 uppercase tracking-wider mb-2 mt-4 bg-emerald-50 p-2 rounded">📚 (New Course) Updated...</div>`;
-                db.subjectsData["First Year"].newCourse.forEach(sub => {
-                    html += `
-                        <div onclick="selectSubject('${sub.code} - ${sub.name}')" class="folder-hover flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-lg cursor-pointer transition shadow-sm mb-2">
-                            <i class="fas fa-folder text-amber-400 text-lg"></i>
-                            <span class="font-medium text-slate-800 text-sm">${sub.code} - ${sub.name}</span>
-                        </div>
-                    `;
-                });
-
-                html += `<div class="font-bold text-xs text-slate-700 uppercase tracking-wider mb-2 mt-6 bg-slate-100 p-2 rounded">📖 (Old Course)</div>`;
-                db.subjectsData["First Year"].oldCourse.forEach(sub => {
-                    html += `
-                        <div onclick="selectSubject('${sub.code} - ${sub.name}')" class="folder-hover flex items-center gap-3 p-3 bg-white border border-slate-200 rounded-lg cursor-pointer transition shadow-sm mb-2">
-                            <i class="fas fa-folder text-amber-400 text-lg"></i>
-                            <span class="font-medium text-slate-800 text-sm">${sub.code} - ${sub.name}</span>
-                        </div>
-                    `;
-                });
-                container.innerHTML = html;
-            }
-            else if (db.view === 'materialDetail') {
-                breadcrumb.textContent = `Home / DAE / ${db.selectedSubject}`;
-                title.textContent = `${db.selectedSubject}`;
-                
-                db.materials.forEach(mat => {
-                    container.innerHTML += `
-                        <div onclick="alert('Opening ${mat.name} for ${db.selectedSubject}')" class="folder-hover flex items-center justify-between p-3 bg-white border border-slate-200 rounded-lg cursor-pointer transition shadow-sm">
-                            <div class="flex items-center gap-3">
-                                <span class="text-emerald-600 font-bold">•</span>
-                                <span class="font-medium text-slate-800 text-sm sm:text-base">${mat.name}</span>
-                            </div>
-                            <span class="text-xs text-slate-400 bg-slate-100 px-2 py-1 rounded">${mat.count}</span>
-                        </div>
-                    `;
-                });
-            }
-        }
-
-        function navigateTo(type) {
-            if (type === 'techList') {
-                db.view = 'techList';
-                render();
-            } else {
-                alert(type + ' section is coming soon!');
-            }
-        }
-
-        function selectTech(tech) {
-            db.selectedTech = tech;
-            db.view = 'yearList';
-            render();
-        }
-
-        function selectYear(year) {
-            db.selectedYear = year;
-            db.view = 'subjectList';
-            render();
-        }
-
-        function selectSubject(subject) {
-            db.selectedSubject = subject;
-            db.view = 'materialDetail';
-            render();
-        }
-
-        function goHome() {
-            db.view = 'home';
-            render();
-        }
-
-        function toggleSearch() {
-            const bar = document.getElementById('searchBarContainer');
-            bar.classList.toggle('hidden');
-        }
-
-        function handleSearch() {
-            // Live Search integration can be expanded here
-        }
-
-        // Initial Load
-        render();
+        lucide.createIcons();
     </script>
 </body>
 </html>
