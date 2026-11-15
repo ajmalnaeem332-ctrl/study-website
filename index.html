@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPortal PK | PBTE DAE Study Notes, Past Papers & PPSC Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e3a8a',
+                            900: '#172554',
+                            950: '#0f172a',
+                        },
+                        tealbrand: {
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-teal-100 selection:text-teal-900">
+
+    <!-- 1) Top Announcement Bar -->
+    <div class="bg-navy-900 text-white text-xs sm:text-sm py-2.5 px-4 border-b border-blue-800/60">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div class="flex items-center gap-2 text-center sm:text-left">
+                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-tealbrand-600 text-white shrink-0">
+                    Latest Update
+                </span>
+                <p class="text-slate-100 truncate max-w-xs sm:max-w-xl md:max-w-2xl">
+                    PBTE DAE 1st, 2nd & 3rd Year Annual Exam Date Sheet 2026 & PPSC Sub-Engineer Solved Past Papers Uploaded!
+                </p>
+            </div>
+            <div class="hidden md:flex items-center gap-4 text-xs text-blue-200 shrink-0">
+                <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-teal-400"></i> Updated Daily</span>
+                <span>|</span>
+                <a href="#request-box" class="hover:text-white underline underline-offset-2">Request Syllabus</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2) Sticky Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20 gap-4">
+                <!-- Logo -->
+                <a href="#" onclick="resetFilters(event)" class="flex items-center gap-3 shrink-0 group">
+                    <div class="w-10 h-10 rounded-xl bg-navy-800 flex items-center justify-center text-white shadow-md shadow-blue-900/20 group-hover:bg-tealbrand-600 transition-colors">
+                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-extrabold text-xl tracking-tight text-navy-800 block leading-none">
+                            EduPortal <span class="text-tealbrand-600">PK</span>
+                        </span>
+                        <span class="text-[11px] font-medium text-slate-500 tracking-wide">Technical & Science Notes</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="#" data-nav-cat="All" class="nav-link px-3.5 py-2 rounded-xl text-sm font-semibold text-navy-800 bg-blue-50/80 transition-colors">Home</a>
+                    <a href="#notes-section" data-nav-cat="DAE Civil" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-800 hover:bg-slate-100 transition-colors">DAE Notes</a>
+                    <a href="#notes-section" data-nav-cat="Past Papers" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-800 hover:bg-slate-100 transition-colors">Past Papers</a>
+                    <a href="#notes-section" data-nav-cat="PPSC" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-800 hover:bg-slate-100 transition-colors">PPSC Jobs</a>
+                    <a href="#notes-section" data-nav-cat="Applied Math" class="nav-link px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-navy-800 hover:bg-slate-100 transition-colors">Handbooks</a>
+                </nav>
+
+                <!-- Header Quick Search Bar -->
+                <div class="hidden sm:flex items-center relative w-64 xl:w-72">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 pointer-events-none"></i>
+                    <input 
+                        type="text" 
+                        id="header-search-input" 
+                        placeholder="Search code (e.g. MATH-113)..." 
+                        class="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-100 border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tealbrand-600/30 focus:border-tealbrand-600 transition-all"
+                    >
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Open Navigation Menu" class="lg:hidden p-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-5 space-y-2 shadow-lg">
+            <div class="pb-2 sm:hidden">
+                <div class="relative">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+                    <input type="text" id="mobile-search-input" placeholder="Search notes, subjects..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 border border-slate-200 text-sm focus:outline-none focus:border-tealbrand-600">
+                </div>
+            </div>
+            <a href="#" data-nav-cat="All" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-semibold text-navy-800 bg-blue-50">Home</a>
+            <a href="#notes-section" data-nav-cat="DAE Civil" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">DAE Notes</a>
+            <a href="#notes-section" data-nav-cat="Past Papers" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">Past Papers</a>
+            <a href="#notes-section" data-nav-cat="PPSC" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">PPSC Jobs</a>
+            <a href="#notes-section" data-nav-cat="Applied Math" class="mobile-nav-link block px-4 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">Handbooks</a>
+        </div>
+    </header>
+
+    <!-- 3) Hero Section with Live Search & Category Filter Pills -->
+    <section class="bg-gradient-to-br from-navy-800 via-blue-900 to-slate-900 text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-200 relative overflow-hidden">
+        <!-- Subtle Academic Pattern Overlay -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-teal-300 text-xs font-semibold mb-5">
+                <i data-lucide="book-open-check" class="w-4 h-4"></i>
+                <span>Free Technical Education Resource Hub for Pakistan</span>
+            </div>
+
+            <h1 class="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-tight">
+                PBTE DAE Study Notes, Solved Past Papers & <span class="text-teal-300">PPSC Exam Guides</span>
+            </h1>
+            <p class="mt-4 text-blue-100 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+                Access chapter-wise short questions, solved MCQs, engineering drawing sheets, and sub-engineer preparation material in clean PDF format.
+            </p>
+
+            <!-- Hero Live Search Box -->
+            <div class="mt-8 max-w-2xl mx-auto">
+                <div class="relative flex items-center bg-white rounded-2xl p-1.5 shadow-xl shadow-navy-950/30 border border-white/20">
+                    <i data-lucide="search" class="w-5 h-5 text-slate-400 ml-3.5 shrink-0"></i>
+                    <input 
+                        type="text" 
+                        id="hero-search-input" 
+                        placeholder="Search by subject title, course code (MATH-113, CIVIL-113), or topic..." 
+                        class="w-full px-3.5 py-3 text-slate-800 placeholder-slate-400 text-sm sm:text-base bg-transparent focus:outline-none"
+                    >
+                    <button id="clear-search-btn" onclick="clearAllFilters()" class="hidden px-3 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800">
+                        Clear
+                    </button>
+                    <button onclick="scrollToNotes()" class="px-5 py-3 rounded-xl bg-tealbrand-600 hover:bg-tealbrand-700 text-white font-semibold text-sm transition-colors shrink-0 shadow-sm">
+                        Find Notes
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="mt-7 flex flex-wrap items-center justify-center gap-2" id="category-pills">
+                <button data-category="All" class="cat-pill active px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-tealbrand-600 text-white shadow-md transition-all">
+                    All Resources
+                </button>
+                <button data-category="DAE Civil" class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-all">
+                    DAE Civil
+                </button>
+                <button data-category="DAE Mechanical" class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-all">
+                    DAE Mechanical
+                </button>
+                <button data-category="Applied Math" class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-all">
+                    Applied Math
+                </button>
+                <button data-category="Past Papers" class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-all">
+                    Past Papers
+                </button>
+                <button data-category="PPSC" class="cat-pill px-4 py-2 rounded-full text-xs sm:text-sm font-medium bg-white/10 hover:bg-white/20 text-white border border-white/15 transition-all">
+                    PPSC
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4) Main 2-Column Academic Content Area (70% Left / 30% Right) -->
+    <main id="notes-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div class="flex flex-col lg:flex-row gap-8 items-start">
+
+            <!-- LEFT COLUMN (70%): Study Notes Grid -->
+            <div class="w-full lg:w-[70%]">
+                <!-- Section Status Bar -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm mb-6">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-2.5 h-6 rounded-full bg-tealbrand-600"></div>
+                        <h2 id="active-heading" class="font-display font-bold text-lg sm:text-xl text-navy-800">
+                            Latest Study Notes & Solved Papers
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs sm:text-sm text-slate-500">
+                        <span id="results-counter" class="font-semibold text-slate-700 bg-slate-100 px-3 py-1 rounded-lg">
+                            Showing 6 of 6 resources
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Dynamic Study Note Cards Grid -->
+                <div id="notes-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Rendered dynamically via JavaScript -->
+                </div>
+
+                <!-- Empty State (Shown when search/filter finds 0 matches) -->
+                <div id="empty-state" class="hidden bg-white rounded-2xl border border-slate-200 p-10 text-center shadow-sm">
+                    <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="file-search" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-lg text-slate-800">No Study Notes Matched Your Search</h3>
+                    <p class="text-slate-500 text-sm mt-1 max-w-md mx-auto">
+                        Try searching with a different subject code (like <span class="font-semibold text-navy-800">MATH-113</span> or <span class="font-semibold text-navy-800">CIVIL-113</span>) or reset your category filter.
+                    </p>
+                    <button onclick="clearAllFilters()" class="mt-5 px-5 py-2.5 rounded-xl bg-navy-800 hover:bg-navy-900 text-white text-sm font-semibold transition-colors">
+                        Reset All Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN (30%): Academic Sidebar -->
+            <aside class="w-full lg:w-[30%] space-y-6">
+
+                <!-- Widget 1: Popular Posts -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+                    <div class="flex items-center gap-2 pb-3.5 mb-4 border-b border-slate-100">
+                        <i data-lucide="flame" class="w-5 h-5 text-tealbrand-600"></i>
+                        <h3 class="font-display font-bold text-base text-navy-800">Popular Posts</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li>
+                            <button onclick="openNoteModalById(1)" class="text-left group flex items-start gap-3 w-full">
+                                <span class="w-7 h-7 rounded-lg bg-blue-50 text-navy-800 font-display font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-navy-800 group-hover:text-white transition-colors">01</span>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-slate-800 group-hover:text-tealbrand-600 transition-colors leading-snug">
+                                        DAE MATH-113 Applied Mathematics - Ch 1 Quadratic Equations
+                                    </h4>
+                                    <span class="text-[11px] text-slate-400 mt-1 block">4,820 Views • Applied Math</span>
+                                </div>
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="openNoteModalById(3)" class="text-left group flex items-start gap-3 w-full">
+                                <span class="w-7 h-7 rounded-lg bg-blue-50 text-navy-800 font-display font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-navy-800 group-hover:text-white transition-colors">02</span>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-slate-800 group-hover:text-tealbrand-600 transition-colors leading-snug">
+                                        PPSC Sub Engineer Civil Past Paper 2025 (Solved MCQs)
+                                    </h4>
+                                    <span class="text-[11px] text-slate-400 mt-1 block">3,910 Views • PPSC Jobs</span>
+                                </div>
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="openNoteModalById(5)" class="text-left group flex items-start gap-3 w-full">
+                                <span class="w-7 h-7 rounded-lg bg-blue-50 text-navy-800 font-display font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-navy-800 group-hover:text-white transition-colors">03</span>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-slate-800 group-hover:text-tealbrand-600 transition-colors leading-snug">
+                                        PBTE DAE Past Papers 2024-2025 Complete Archive
+                                    </h4>
+                                    <span class="text-[11px] text-slate-400 mt-1 block">3,450 Views • Past Papers</span>
+                                </div>
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="openNoteModalById(4)" class="text-left group flex items-start gap-3 w-full">
+                                <span class="w-7 h-7 rounded-lg bg-blue-50 text-navy-800 font-display font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-navy-800 group-hover:text-white transition-colors">04</span>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-slate-800 group-hover:text-tealbrand-600 transition-colors leading-snug">
+                                        DAE CIVIL-113 Engineering Materials MCQs & Short Qs
+                                    </h4>
+                                    <span class="text-[11px] text-slate-400 mt-1 block">2,780 Views • DAE Civil</span>
+                                </div>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Widget 2: Main Categories & Tags with Item Counts -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+                    <div class="flex items-center gap-2 pb-3.5 mb-4 border-b border-slate-100">
+                        <i data-lucide="folder-kanban" class="w-5 h-5 text-navy-800"></i>
+                        <h3 class="font-display font-bold text-base text-navy-800">Main Categories & Tags</h3>
+                    </div>
+
+                    <div class="space-y-2">
+                        <button onclick="selectCategoryFromSidebar('All')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-navy-800 text-sm font-medium transition-colors group">
+                            <span class="flex items-center gap-2"><i data-lucide="layers" class="w-4 h-4 text-tealbrand-600"></i> DAE All Technologies</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white border border-slate-200 text-navy-800 group-hover:border-blue-200">225</span>
+                        </button>
+                        <button onclick="selectCategoryFromSidebar('Past Papers')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-navy-800 text-sm font-medium transition-colors group">
+                            <span class="flex items-center gap-2"><i data-lucide="file-check-2" class="w-4 h-4 text-tealbrand-600"></i> Past Papers</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white border border-slate-200 text-navy-800 group-hover:border-blue-200">87</span>
+                        </button>
+                        <button onclick="selectCategoryFromSidebar('PPSC')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-navy-800 text-sm font-medium transition-colors group">
+                            <span class="flex items-center gap-2"><i data-lucide="briefcase" class="w-4 h-4 text-tealbrand-600"></i> PPSC Sub-Engineer</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white border border-slate-200 text-navy-800 group-hover:border-blue-200">33</span>
+                        </button>
+                        <button onclick="selectCategoryFromSidebar('DAE Mechanical')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-navy-800 text-sm font-medium transition-colors group">
+                            <span class="flex items-center gap-2"><i data-lucide="book" class="w-4 h-4 text-tealbrand-600"></i> Handbooks & Guides</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white border border-slate-200 text-navy-800 group-hover:border-blue-200">12</span>
+                        </button>
+                        <button onclick="selectCategoryFromSidebar('Applied Math')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-navy-800 text-sm font-medium transition-colors group">
+                            <span class="flex items-center gap-2"><i data-lucide="calculator" class="w-4 h-4 text-tealbrand-600"></i> Applied Math</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white border border-slate-200 text-navy-800 group-hover:border-blue-200">15</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Subject Tags -->
+                    <div class="mt-5 pt-4 border-t border-slate-100">
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2.5">Popular Tags</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            <button onclick="quickTagSearch('MATH-113')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-teal-50 text-slate-600 hover:text-tealbrand-700 text-xs font-medium transition-colors">#MATH-113</button>
+                            <button onclick="quickTagSearch('CIVIL-113')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-teal-50 text-slate-600 hover:text-tealbrand-700 text-xs font-medium transition-colors">#CIVIL-113</button>
+                            <button onclick="quickTagSearch('MECH-173')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-teal-50 text-slate-600 hover:text-tealbrand-700 text-xs font-medium transition-colors">#MECH-173</button>
+                            <button onclick="quickTagSearch('PBTE')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-teal-50 text-slate-600 hover:text-tealbrand-700 text-xs font-medium transition-colors">#PBTE</button>
+                            <button onclick="quickTagSearch('PPSC')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-teal-50 text-slate-600 hover:text-tealbrand-700 text-xs font-medium transition-colors">#PPSC2025</button>
+                            <button onclick="quickTagSearch('ENG-112')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-teal-50 text-slate-600 hover:text-tealbrand-700 text-xs font-medium transition-colors">#ENG-112</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Widget 3: Clean 'Request Notes' Mini Contact Box -->
+                <div id="request-box" class="bg-gradient-to-b from-blue-50/90 to-white rounded-2xl border border-blue-200/80 p-5 sm:p-6 shadow-sm">
+                    <div class="flex items-center gap-2.5 mb-2">
+                        <div class="w-9 h-9 rounded-xl bg-navy-800 text-white flex items-center justify-center shrink-0">
+                            <i data-lucide="mail-plus" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-base text-navy-800">Request Study Notes</h3>
+                            <p class="text-xs text-slate-500">Can't find a subject code? Ask us!</p>
+                        </div>
+                    </div>
+
+                    <form id="request-notes-form" class="mt-4 space-y-3">
+                        <div>
+                            <input type="text" required placeholder="Your Name (e.g. Ali Raza)" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-tealbrand-600">
+                        </div>
+                        <div>
+                            <input type="text" required placeholder="Subject Code (e.g. ELEC-214)" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-tealbrand-600">
+                        </div>
+                        <div>
+                            <textarea rows="2" required placeholder="Specify chapter, year, or paper details..." class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-tealbrand-600"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-2.5 rounded-xl bg-tealbrand-600 hover:bg-tealbrand-700 text-white font-semibold text-sm transition-colors shadow-sm flex items-center justify-center gap-2">
+                            <span>Submit Request</span>
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+
+                    <!-- Inline Confirmation Feedback -->
+                    <div id="request-feedback" class="hidden mt-3 p-3 rounded-xl bg-teal-50 border border-teal-200 text-teal-800 text-xs font-medium flex items-start gap-2">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-tealbrand-600 shrink-0 mt-0.5"></i>
+                        <span>Thank you! Your study notes request has been received and will be uploaded within 24 hours.</span>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- 5) Professional Dark Navy Footer -->
+    <footer class="bg-navy-950 text-slate-300 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-slate-800/80">
+                <!-- Brand Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-xl bg-tealbrand-600 flex items-center justify-center text-white">
+                            <i data-lucide="graduation-cap" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-display font-extrabold text-xl text-white">
+                            EduPortal <span class="text-teal-400">PK</span>
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-md leading-relaxed">
+                        Inspired by Punjab Technical & Science Academy (PTASA). Dedicated to empowering DAE diploma students and PPSC engineering aspirants across Pakistan with free, verified study material.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#" onclick="resetFilters(event)" class="hover:text-teal-400 transition-colors">Home Portal</a></li>
+                        <li><a href="#notes-section" onclick="selectCategoryFromSidebar('DAE Civil')" class="hover:text-teal-400 transition-colors">DAE Civil Notes</a></li>
+                        <li><a href="#notes-section" onclick="selectCategoryFromSidebar('DAE Mechanical')" class="hover:text-teal-400 transition-colors">DAE Mechanical Notes</a></li>
+                        <li><a href="#notes-section" onclick="selectCategoryFromSidebar('Past Papers')" class="hover:text-teal-400 transition-colors">PBTE Past Papers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Exam Resources -->
+                <div>
+                    <h4 class="font-display font-bold text-sm uppercase tracking-wider text-white mb-4">Exam Resources</h4>
+                    <ul class="space-y-2.5 text-sm text-slate-400">
+                        <li><a href="#notes-section" onclick="selectCategoryFromSidebar('PPSC')" class="hover:text-teal-400 transition-colors">PPSC Sub-Engineer Prep</a></li>
+                        <li><a href="#notes-section" onclick="selectCategoryFromSidebar('Applied Math')" class="hover:text-teal-400 transition-colors">Applied Mathematics</a></li>
+                        <li><a href="#request-box" class="hover:text-teal-400 transition-colors">Request Missing Notes</a></li>
+                        <li><a href="#notes-section" class="hover:text-teal-400 transition-colors">PBTE Syllabus Updates</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+                <p>&copy; 2026 EduPortal PK. All rights reserved. Free Educational Portal for Students.</p>
+                <p>Built for PBTE DAE & PPSC Technical Aspirants</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive "Read Notes" Modal Preview -->
+    <div id="notes-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
+            <!-- Modal Header -->
+            <div class="bg-navy-800 text-white px-6 py-4 flex items-start justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span id="modal-badge" class="px-2.5 py-0.5 rounded-md bg-tealbrand-600 text-white text-[11px] font-bold uppercase tracking-wider">
+                            Category
+                        </span>
+                        <span id="modal-date" class="text-xs text-blue-200">Date</span>
+                    </div>
+                    <h3 id="modal-title" class="font-display font-bold text-lg sm:text-xl leading-snug">
+                        Note Title
+                    </h3>
+                </div>
+                <button onclick="closeNotesModal()" aria-label="Close Preview" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors shrink-0">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body: Sample Short Questions & MCQs -->
+            <div class="p-6 overflow-y-auto space-y-5 text-sm text-slate-700">
+                <div class="p-3.5 rounded-xl bg-blue-50/80 border border-blue-100 text-navy-800 text-xs sm:text-sm flex items-center justify-between">
+                    <span><strong>Subject Code:</strong> <span id="modal-code">MATH-113</span></span>
+                    <span><strong>Format:</strong> Solved Short Qs & MCQs</span>
+                </div>
+
+                <div id="modal-content-body" class="space-y-4">
+                    <!-- Populated dynamically per note -->
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <span class="text-xs text-slate-500">Full printable PDF includes all solved exercises.</span>
+                <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                    <button onclick="closeNotesModal()" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-xs sm:text-sm hover:bg-slate-100 transition-colors">
+                        Close Preview
+                    </button>
+                    <button id="modal-download-btn" class="flex-1 sm:flex-initial px-5 py-2.5 rounded-xl bg-tealbrand-600 hover:bg-tealbrand-700 text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-2 shadow-sm">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Download PDF</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Non-intrusive Toast Notification for PDF Download -->
+    <div id="download-toast" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 bg-navy-900 text-white px-4 py-3.5 rounded-2xl shadow-xl border border-slate-700 max-w-sm">
+        <div class="w-8 h-8 rounded-xl bg-tealbrand-600 flex items-center justify-center shrink-0">
+            <i data-lucide="file-down" class="w-4 h-4"></i>
+        </div>
+        <div class="text-xs">
+            <p class="font-bold text-white" id="toast-title">Downloading PDF...</p>
+            <p class="text-slate-300 mt-0.5" id="toast-subtitle">Your study material is ready.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Study Notes Dataset
+        const studyNotes = [
+            {
+                id: 1,
+                title: "DAE MATH-113 Applied Mathematics - Ch 1 Quadratic Equations",
+                code: "MATH-113",
+                category: "Applied Math",
+                tags: ["Applied Math", "DAE 1st Year", "PBTE"],
+                date: "Oct 18, 2026",
+                pages: "24 Pages",
+                summary: "Complete chapter-wise solved short questions, factorization methods, quadratic formula derivations, and important board MCQs.",
+                previewItems: [
+                    {
+                        q: "Q1 (Short): Define a Quadratic Equation and write its standard form.",
+                        a: "An equation of degree 2 in one variable is called a quadratic equation. Its standard form is ax² + bx + c = 0, where a, b, c are real numbers and a ≠ 0."
+                    },
+                    {
+                        q: "Q2 (Short): What is the nature of roots when the discriminant (b² - 4ac) = 0?",
+                        a: "When b² - 4ac = 0, the roots of the quadratic equation are real, rational, and equal."
+                    },
+                    {
+                        q: "MCQ 1: The sum of the roots of the equation 3x² - 6x + 5 = 0 is:",
+                        a: "Correct Answer: (B) 2  [Using formula α + β = -b/a = -(-6)/3 = 2]"
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "DAE MECH-173 Engineering Drawing & Graphics - Ch 2",
+                code: "MECH-173",
+                category: "DAE Mechanical",
+                tags: ["DAE Mechanical", "Drawing", "Ch 2"],
+                date: "Oct 15, 2026",
+                pages: "32 Pages",
+                summary: "Orthographic projections, first-angle vs third-angle projection symbols, dimensioning rules, and solved viva questions.",
+                previewItems: [
+                    {
+                        q: "Q1 (Short): Differentiate between First-Angle and Third-Angle Projection.",
+                        a: "In First-Angle projection, the object lies between the observer and the plane of projection. In Third-Angle projection, the plane of projection lies between the observer and the object."
+                    },
+                    {
+                        q: "Q2 (Short): What is the standard inclination angle for inclined lettering in engineering drawing?",
+                        a: "Inclined letters and numerals are drawn at an angle of 75° to the horizontal line."
+                    },
+                    {
+                        q: "MCQ 1: Which pencil grade is typically used for thin construction and center lines?",
+                        a: "Correct Answer: (C) 2H or 3H hard lead pencil"
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "PPSC Sub Engineer Civil Past Paper 2025 (Solved)",
+                code: "PPSC-CIVIL-25",
+                category: "PPSC",
+                tags: ["PPSC", "DAE Civil", "Solved MCQs"],
+                date: "Oct 12, 2026",
+                pages: "18 Pages",
+                summary: "Original 100-marks PPSC Sub-Engineer (BS-14) Irrigation & C&W Department paper with verified answer keys and explanations.",
+                previewItems: [
+                    {
+                        q: "MCQ 1: The initial setting time of Ordinary Portland Cement (OPC) should not be less than:",
+                        a: "Correct Answer: (B) 30 minutes (Final setting time is 10 hours / 600 minutes)."
+                    },
+                    {
+                        q: "MCQ 2: In surveying, a line joining points of equal elevation is known as:",
+                        a: "Correct Answer: (A) Contour line"
+                    },
+                    {
+                        q: "MCQ 3: The slump test of concrete is primarily used to measure its:",
+                        a: "Correct Answer: (D) Workability / Consistency"
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "DAE CIVIL-113 Engineering Materials MCQs & Short Qs",
+                code: "CIVIL-113",
+                category: "DAE Civil",
+                tags: ["DAE Civil", "Materials", "MCQs"],
+                date: "Oct 09, 2026",
+                pages: "28 Pages",
+                summary: "Comprehensive notes covering building stones, bricks manufacturing, lime, cement hydration, timber defects, and steel grades.",
+                previewItems: [
+                    {
+                        q: "Q1 (Short): Write the standard nominal size of a modular clay brick in Pakistan.",
+                        a: "The standard size of a brick is 9\" × 4.5\" × 3\" (or 228 mm × 114 mm × 76 mm)."
+                    },
+                    {
+                        q: "Q2 (Short): What is the function of Gypsum in cement manufacturing?",
+                        a: "Gypsum (2% to 3%) acts as a retarder to prevent flash setting of cement when water is added."
+                    },
+                    {
+                        q: "MCQ 1: Good brick earth should contain alumina in the percentage range of:",
+                        a: "Correct Answer: (A) 20% to 30%"
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "PBTE DAE Past Papers 2024-2025 (1st & 2nd Annual)",
+                code: "PBTE-2025",
+                category: "Past Papers",
+                tags: ["Past Papers", "PBTE", "All Tech"],
+                date: "Oct 04, 2026",
+                pages: "45 Pages",
+                summary: "Combined archive of Punjab Board of Technical Education (PBTE) annual papers for Civil, Mechanical, Electrical & CIT.",
+                previewItems: [
+                    {
+                        q: "Paper Pattern Overview (Objective Part - 20 Marks):",
+                        a: "Consists of 20 compulsory MCQs to be solved in 20 minutes covering all chapters equally."
+                    },
+                    {
+                        q: "Paper Pattern Overview (Subjective Part - 80 Marks):",
+                        a: "Section-I includes 18 short questions out of 27 (36 marks). Section-II includes 3 long questions out of 5 (44 marks)."
+                    },
+                    {
+                        q: "Exam Tip from PBTE Examiners:",
+                        a: "Always draw neat, labeled freehand sketches with pencil in Civil & Mechanical subjective answers to score full marks."
+                    }
+                ]
+            },
+            {
+                id: 6,
+                title: "DAE ENG-112 Technical English Notes & Comprehension",
+                code: "ENG-112",
+                category: "DAE Mechanical",
+                tags: ["English", "DAE 1st Year", "Past Papers"],
+                date: "Sep 29, 2026",
+                pages: "22 Pages",
+                summary: "Important technical essays, formal job applications, official report writing templates, active/passive voice, and pairs of words.",
+                previewItems: [
+                    {
+                        q: "Q1 (Short): What are the essential parts of a formal technical report?",
+                        a: "Title Page, Abstract/Summary, Introduction, Methodology/Procedure, Findings/Results, Conclusion, and Recommendations."
+                    },
+                    {
+                        q: "Q2 (Grammar): Change into Passive Voice: 'The technician calibrated the pressure gauge.'",
+                        a: "Passive Voice: 'The pressure gauge was calibrated by the technician.'"
+                    },
+                    {
+                        q: "Important Essay Topics for PBTE 2026:",
+                        a: "1) Role of Technical Education in Pakistan's Economy, 2) Workplace Safety in Engineering Labs, 3) Renewable Energy Future."
+                    }
+                ]
+            }
+        ];
+
+        // State Management
+        let currentCategory = "All";
+        let currentSearch = "";
+
+        // DOM References
+        const notesGrid = document.getElementById("notes-grid");
+        const emptyState = document.getElementById("empty-state");
+        const resultsCounter = document.getElementById("results-counter");
+        const activeHeading = document.getElementById("active-heading");
+        const heroSearchInput = document.getElementById("hero-search-input");
+        const headerSearchInput = document.getElementById("header-search-input");
+        const mobileSearchInput = document.getElementById("mobile-search-input");
+        const clearSearchBtn = document.getElementById("clear-search-btn");
+        const categoryPills = document.querySelectorAll(".cat-pill");
+
+        // Render Cards Function
+        function renderNotes() {
+            const query = currentSearch.trim().toLowerCase();
+
+            const filtered = studyNotes.filter(note => {
+                const matchesCategory =
+                    currentCategory === "All" ||
+                    note.category.toLowerCase() === currentCategory.toLowerCase() ||
+                    note.tags.some(t => t.toLowerCase() === currentCategory.toLowerCase());
+
+                const matchesSearch =
+                    !query ||
+                    note.title.toLowerCase().includes(query) ||
+                    note.code.toLowerCase().includes(query) ||
+                    note.category.toLowerCase().includes(query) ||
+                    note.summary.toLowerCase().includes(query) ||
+                    note.tags.some(t => t.toLowerCase().includes(query));
+
+                return matchesCategory && matchesSearch;
+            });
+
+            // Update Heading & Counter
+            activeHeading.textContent = currentCategory === "All"
+                ? "Latest Study Notes & Solved Papers"
+                : `${currentCategory} — Study Material`;
+            resultsCounter.textContent = `Showing ${filtered.length} of ${studyNotes.length} resources`;
+
+            // Toggle Clear Search button
+            if (query || currentCategory !== "All") {
+                clearSearchBtn.classList.remove("hidden");
+            } else {
+                clearSearchBtn.classList.add("hidden");
+            }
+
+            // Handle Empty State
+            if (filtered.length === 0) {
+                notesGrid.innerHTML = "";
+                emptyState.classList.remove("hidden");
+                lucide.createIcons();
+                return;
+            }
+
+            emptyState.classList.add("hidden");
+
+            // Build Cards HTML
+            notesGrid.innerHTML = filtered.map(note => `
+                <article class="bg-white rounded-2xl border border-slate-200 hover:border-tealbrand-600/50 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                    <div>
+                        <!-- Top Meta Row -->
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-50 text-navy-800 border border-blue-100">
+                                ${note.code}
+                            </span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5"></i> ${note.date}
+                            </span>
+                        </div>
+
+                        <!-- Card Title -->
+                        <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 group-hover:text-navy-800 transition-colors leading-snug">
+                            ${note.title}
+                        </h3>
+
+                        <!-- Short Description -->
+                        <p class="text-slate-600 text-xs sm:text-sm mt-2.5 leading-relaxed">
+                            ${note.summary}
+                        </p>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap items-center gap-1.5 mt-4">
+                            ${note.tags.map(tag => `
+                                <span class="px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-medium">
+                                    ${tag}
+                                </span>
+                            `).join("")}
+                            <span class="px-2.5 py-0.5 rounded-md bg-teal-50 text-tealbrand-700 text-[11px] font-semibold ml-auto">
+                                ${note.pages}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mt-5 pt-4 border-t border-slate-100 flex items-center gap-2.5">
+                        <button onclick="openNoteModalById(${note.id})" class="flex-1 py-2.5 px-3.5 rounded-xl bg-navy-800 hover:bg-navy-900 text-white font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                            <i data-lucide="book-open" class="w-4 h-4"></i>
+                            <span>Read Notes</span>
+                        </button>
+                        <button onclick="triggerPdfDownload(${note.id})" class="flex-1 py-2.5 px-3.5 rounded-xl bg-teal-50 hover:bg-tealbrand-600 text-tealbrand-700 hover:text-white border border-teal-200 hover:border-tealbrand-600 font-semibold text-xs sm:text-sm transition-colors flex items-center justify-center gap-1.5">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            <span>Download PDF</span>
+                        </button>
+                    </div>
+                </article>
+            `).join("");
+
+            lucide.createIcons();
+        }
+
+        // Sync Search Inputs
+        function handleSearchUpdate(value) {
+            currentSearch = value;
+            heroSearchInput.value = value;
+            headerSearchInput.value = value;
+            mobileSearchInput.value = value;
+            renderNotes();
+        }
+
+        heroSearchInput.addEventListener("input", e => handleSearchUpdate(e.target.value));
+        headerSearchInput.addEventListener("input", e => handleSearchUpdate(e.target.value));
+        mobileSearchInput.addEventListener("input", e => handleSearchUpdate(e.target.value));
+
+        // Category Pill Selection
+        function setActiveCategory(category) {
+            currentCategory = category;
+
+            categoryPills.forEach(pill => {
+                if (pill.dataset.category === category) {
+                    pill.classList.add("bg-tealbrand-600", "text-white", "font-semibold", "shadow-md");
+                    pill.classList.remove("bg-white/10", "font-medium", "border", "border-white/15");
+                } else {
+                    pill.classList.remove("bg-tealbrand-600", "text-white", "font-semibold", "shadow-md");
+                    pill.classList.add("bg-white/10", "font-medium", "border", "border-white/15");
+                }
+            });
+
+            renderNotes();
+        }
+
+        categoryPills.forEach(pill => {
+            pill.addEventListener("click", () => {
+                setActiveCategory(pill.dataset.category);
+            });
+        });
+
+        // Navigation Links Filtering
+        document.querySelectorAll(".nav-link, .mobile-nav-link").forEach(link => {
+            link.addEventListener("click", () => {
+                const cat = link.dataset.navCat;
+                if (cat) setActiveCategory(cat);
+                document.getElementById("mobile-menu").classList.add("hidden");
+            });
+        });
+
+        function selectCategoryFromSidebar(category) {
+            setActiveCategory(category);
+            scrollToNotes();
+        }
+
+        function quickTagSearch(tag) {
+            setActiveCategory("All");
+            handleSearchUpdate(tag);
+            scrollToNotes();
+        }
+
+        function clearAllFilters() {
+            currentCategory = "All";
+            handleSearchUpdate("");
+            setActiveCategory("All");
+        }
+
+        function resetFilters(e) {
+            if (e) e.preventDefault();
+            clearAllFilters();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function scrollToNotes() {
+            document.getElementById("notes-section").scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Mobile Drawer Toggle
+        document.getElementById("mobile-menu-btn").addEventListener("click", () => {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+
+        // Interactive Modal Preview Logic
+        const notesModal = document.getElementById("notes-modal");
+        const modalTitle = document.getElementById("modal-title");
+        const modalBadge = document.getElementById("modal-badge");
+        const modalDate = document.getElementById("modal-date");
+        const modalCode = document.getElementById("modal-code");
+        const modalContentBody = document.getElementById("modal-content-body");
+        const modalDownloadBtn = document.getElementById("modal-download-btn");
+
+        function openNoteModalById(id) {
+            const note = studyNotes.find(n => n.id === id);
+            if (!note) return;
+
+            modalTitle.textContent = note.title;
+            modalBadge.textContent = note.category;
+            modalDate.textContent = note.date;
+            modalCode.textContent = `${note.code} (${note.pages})`;
+
+            modalContentBody.innerHTML = note.previewItems.map((item, idx) => `
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/90">
+                    <p class="font-semibold text-navy-900 text-sm">${item.q}</p>
+                    <p class="mt-2 text-slate-700 text-xs sm:text-sm leading-relaxed bg-white p-3 rounded-xl border border-slate-100">
+                        ${item.a}
+                    </p>
+                </div>
+            `).join("");
+
+            modalDownloadBtn.onclick = () => {
+                triggerPdfDownload(note.id);
+                closeNotesModal();
+            };
+
+            notesModal.classList.remove("hidden");
+            notesModal.classList.add("flex");
+        }
+
+        function closeNotesModal() {
+            notesModal.classList.add("hidden");
+            notesModal.classList.remove("flex");
+        }
+
+        notesModal.addEventListener("click", e => {
+            if (e.target === notesModal) closeNotesModal();
+        });
+
+        // Simulated PDF File Download + Toast Feedback
+        let toastTimeout;
+        function triggerPdfDownload(id) {
+            const note = studyNotes.find(n => n.id === id);
+            if (!note) return;
+
+            // Create a downloadable study summary text/file so user gets an actual file
+            const fileContent = [
+                "====================================================",
+                "EDUPORTAL PK - TECHNICAL & SCIENCE STUDY NOTES",
+                "====================================================",
+                `Title: ${note.title}`,
+                `Course Code: ${note.code}`,
+                `Category: ${note.category}`,
+                `Published: ${note.date}`,
+                "----------------------------------------------------",
+                "SAMPLE SOLVED QUESTIONS & MCQS:",
+                ...note.previewItems.map(item => `\n${item.q}\n${item.a}`),
+                "\n====================================================",
+                "Visit EduPortal PK for complete PBTE DAE & PPSC resources."
+            ].join("\n");
+
+            const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${note.code}_EduPortal_PK_Notes.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Show Toast
+            const toast = document.getElementById("download-toast");
+            document.getElementById("toast-title").textContent = `Downloaded: ${note.code}`;
+            document.getElementById("toast-subtitle").textContent = `${note.title.slice(0, 42)}...`;
+            toast.classList.remove("hidden");
+            toast.classList.add("flex");
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.add("hidden");
+                toast.classList.remove("flex");
+            }, 3500);
+        }
+
+        // Request Notes Sidebar Form Submission
+        const requestForm = document.getElementById("request-notes-form");
+        const requestFeedback = document.getElementById("request-feedback");
+
+        requestForm.addEventListener("submit", e => {
+            e.preventDefault();
+            requestForm.reset();
+            requestFeedback.classList.remove("hidden");
+            setTimeout(() => {
+                requestFeedback.classList.add("hidden");
+            }, 5000);
+        });
+
+        // Initial Render
+        renderNotes();
+    </script>
+</body>
+</html>
