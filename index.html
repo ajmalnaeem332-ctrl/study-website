@@ -105,4 +105,160 @@
                 chapters: [
                     { name: "Chapter 1: Introduction to Drawing Instruments", mcqs: 35, notes: "Brief theory & lines types" },
                     { name: "Chapter 2: Geometrical Constructions", mcqs: 45, notes: "Angles, triangles & polygons" },
-                    
+                    { name: "Chapter 3: Orthographic Projections", mcqs: 50, notes: "First and third angle projection" }
+                ]
+            },
+            {
+                id: 2,
+                title: "CIVIL-123 Surveying-I",
+                year: "1st Year",
+                code: "CIVIL-123",
+                desc: "Chain surveying, compass surveying, plane table surveying, and leveling principles.",
+                chapters: [
+                    { name: "Chapter 1: Chain Surveying Fundamentals", mcqs: 40, notes: "Errors and chaining obstacles" },
+                    { name: "Chapter 2: Compass Surveying & Bearings", mcqs: 60, notes: "Meridians, FB and BB calculations" },
+                    { name: "Chapter 3: Leveling & Contour Mapping", mcqs: 55, notes: "Height of instrument method" }
+                ]
+            },
+            {
+                id: 3,
+                title: "CIVIL-132 Engineering Materials",
+                year: "1st Year",
+                code: "CIVIL-132",
+                desc: "Properties of stones, bricks, lime, cement, timber, and modern building materials.",
+                chapters: [
+                    { name: "Chapter 1: Bricks & Clay Products", mcqs: 30, notes: "Classification and testing of bricks" },
+                    { name: "Chapter 2: Cement & Concrete", mcqs: 65, notes: "Manufacturing, types and setting times" }
+                ]
+            },
+            {
+                id: 4,
+                title: "CIVIL-214 Surveying-II (Advanced)",
+                year: "2nd Year",
+                code: "CIVIL-214",
+                desc: "Theodolite traversing, tacheometry, curves, and modern total station surveying.",
+                chapters: [
+                    { name: "Chapter 1: Theodolite Traversing", mcqs: 45, notes: "Measurement of horizontal/vertical angles" },
+                    { name: "Chapter 2: Tacheometric Surveying", mcqs: 35, notes: "Distance and elevation determination" }
+                ]
+            },
+            {
+                id: 5,
+                title: "CIVIL-223 Concrete Technology & RCC",
+                year: "2nd Year",
+                code: "CIVIL-223",
+                desc: "Reinforced cement concrete design, steel reinforcement placement, and formwork.",
+                chapters: [
+                    { name: "Chapter 1: Properties of Fresh & Hardened Concrete", mcqs: 50, notes: "Slump test and compressive strength" },
+                    { name: "Chapter 2: Design of Beams & Slabs", mcqs: 40, notes: "Working stress method fundamentals" }
+                ]
+            },
+            {
+                id: 6,
+                title: "CIVIL-313 Quantity Surveying & Cost Estimation",
+                year: "3rd Year",
+                code: "CIVIL-313",
+                desc: "Detailed estimation of buildings, roads, water supply, and sanitary installations.",
+                chapters: [
+                    { name: "Chapter 1: Methods of Taking Out Quantities", mcqs: 40, notes: "Center line and long wall-short wall method" },
+                    { name: "Chapter 2: Earthwork Calculation for Roads", mcqs: 30, notes: "Mid-section formula and prismoidal formula" }
+                ]
+            }
+        ];
+
+        let currentYear = 'All';
+
+        function renderSubjects(data) {
+            const container = document.getElementById('subjectsContainer');
+            const countLabel = document.getElementById('resultCount');
+            container.innerHTML = '';
+            countLabel.textContent = `Showing ${data.length} subjects`;
+
+            data.forEach(item => {
+                let chaptersHtml = item.chapters.map(ch => `
+                    <div class="flex justify-between items-center bg-slate-50 p-2 rounded text-xs">
+                        <span class="font-medium text-slate-700">${ch.name}</span>
+                        <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">${ch.mcqs} MCQs</span>
+                    </div>
+                `).join('');
+
+                const card = `
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 card-hover transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2.5 py-0.5 rounded-md">${item.year}</span>
+                                <span class="bg-slate-100 text-slate-600 text-[11px] font-semibold px-2.5 py-0.5 rounded-md">${item.code}</span>
+                            </div>
+                            <h4 class="text-base font-bold text-slate-900 mb-2">${item.title}</h4>
+                            <p class="text-xs text-slate-600 mb-4">${item.desc}</p>
+                            <div class="space-y-1.5 mb-4">
+                                ${chaptersHtml}
+                            </div>
+                        </div>
+                        <button onclick="openModal(${item.id})" class="w-full bg-slate-900 hover:bg-emerald-600 text-white text-xs font-semibold py-2.5 rounded-lg transition text-center">
+                            <i class="fas fa-book-open mr-1"></i> View Chapters & MCQs
+                        </button>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        function filterYear(year) {
+            currentYear = year;
+            document.getElementById('sectionTitle').innerHTML = `
+                <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+                Civil Technology - ${year === 'All' ? 'All Years' : year} Subjects
+            `;
+            if (year === 'All') {
+                renderSubjects(civilData);
+            } else {
+                renderSubjects(civilData.filter(s => s.year === year));
+            }
+        }
+
+        function searchSubjects() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = civilData.filter(item => 
+                (currentYear === 'All' || item.year === currentYear) &&
+                (item.title.toLowerCase().includes(query) || item.code.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query))
+            );
+            renderSubjects(filtered);
+        }
+
+        function openModal(id) {
+            const item = civilData.find(s => s.id === id);
+            if (!item) return;
+            document.getElementById('modalYear').textContent = item.year + ' • ' + item.code;
+            document.getElementById('modalTitle').textContent = item.title;
+            
+            let bodyContent = `<h4 class="font-bold text-slate-900 mb-2">Chapter-wise MCQs & Breakdown:</h4><div class="space-y-3">`;
+            item.chapters.forEach((ch, idx) => {
+                bodyContent += `
+                    <div class="bg-emerald-50 border-l-4 border-emerald-600 p-3 rounded">
+                        <strong class="text-slate-900 text-sm">${ch.name}</strong>
+                        <p class="text-xs text-slate-600 mt-1">Topics: ${ch.notes}</p>
+                        <div class="mt-2 text-xs font-semibold text-emerald-700 bg-white inline-block px-2 py-1 rounded border border-emerald-200">
+                            ✨ Total MCQs Available: ${ch.mcqs}
+                        </div>
+                    </div>
+                `;
+            });
+            bodyContent += `</div>`;
+            document.getElementById('modalBody').innerHTML = bodyContent;
+            
+            const modal = document.getElementById('chapterModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('chapterModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        renderSubjects(civilData);
+    </script>
+</body>
+</html>
