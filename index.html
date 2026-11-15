@@ -3,150 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAE Study Portal - Cute & Clean Design</title>
+    <title>PTASA Edu - DAE Study Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
-        .folder-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08); }
+        body { font-family: sans-serif; background-color: #ffffff; }
+        .folder-item:hover { background-color: #f8fafc; }
     </style>
 </head>
-<body class="text-slate-800 flex flex-col min-h-screen">
+<body class="text-slate-900 flex flex-col min-h-screen">
 
-    <!-- پیارا سا مینو بار (Cute Menu Bar) -->
-    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
-        <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
-            <!-- لوگو -->
-            <div class="flex items-center gap-2">
-                <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-indigo-200">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <div>
-                    <span class="font-bold text-slate-900 text-base tracking-tight">DAE <span class="text-indigo-600">Portal</span></span>
-                    <span class="block text-[10px] text-slate-400 font-medium uppercase">Study Network</span>
-                </div>
+    <!-- Header -->
+    <header class="border-b border-slate-200 bg-white sticky top-0 z-50">
+        <div class="max-w-3xl mx-auto px-4 h-14 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <button onclick="goHome()" class="text-slate-700 hover:text-emerald-600 font-bold text-sm flex items-center gap-2">
+                    <i class="fas fa-home text-emerald-600 text-base"></i> PTASA Edu
+                </button>
             </div>
-
-            <!-- مینو لنکس -->
-            <nav class="hidden md:flex items-center space-x-1">
-                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-indigo-600 bg-indigo-50 transition">Home</a>
-                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 transition">DAE Hand Book</a>
-                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 transition">Past Papers</a>
-                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 transition">PPSC</a>
-                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 transition">Notifications</a>
-            </nav>
-
-            <!-- سرچ یا واٹس ایپ بٹن -->
-            <div>
-                <a href="https://wa.me/" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-sm transition flex items-center gap-1.5">
-                    <i class="fab fa-whatsapp text-sm"></i> Contact
-                </a>
+            <div class="flex items-center gap-3">
+                <button onclick="toggleMenu()" class="p-2 text-slate-700 hover:bg-slate-100 rounded">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- مین ہیرو سیکشن -->
-    <section class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white py-12 px-4 text-center">
-        <div class="max-w-2xl mx-auto">
-            <h1 class="text-2xl sm:text-3xl font-bold mb-2">PBTE | DAE Study Materials & Folders</h1>
-            <p class="text-indigo-100 text-xs sm:text-sm">Select your technology folder below to explore years, subjects, notes, and chapter-wise MCQs.</p>
+    <!-- Slide-out Drawer Menu (Matching Screenshot 1) -->
+    <div id="drawerMenu" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity" onclick="toggleMenu()">
+        <div class="bg-white w-64 h-full shadow-xl p-5 space-y-4 flex flex-col justify-between" onclick="event.stopPropagation()">
+            <div>
+                <div class="flex justify-between items-center mb-6 border-b pb-3">
+                    <span class="font-bold text-slate-800">Menu</span>
+                    <button onclick="toggleMenu()" class="text-slate-500 hover:text-red-500"><i class="fas fa-times text-lg"></i></button>
+                </div>
+                <ul class="space-y-3 text-sm font-medium text-slate-700">
+                    <li><a href="javascript:void(0)" onclick="goHome(); toggleMenu();" class="hover:text-emerald-600 block py-1">Home</a></li>
+                    <li><a href="javascript:void(0)" onclick="openDAEHome(); toggleMenu();" class="hover:text-emerald-600 block py-1">DAE</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('DAE Hand Book section')" class="hover:text-emerald-600 block py-1">DAE Hand Book</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('Past Papers section')" class="hover:text-emerald-600 block py-1">Past Papers</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('PPSC section')" class="hover:text-emerald-600 block py-1">PPSC</a></li>
+                    <li><a href="javascript:void(0)" onclick="alert('Notifications section')" class="hover:text-emerald-600 block py-1">Notifications</a></li>
+                </ul>
+            </div>
+            <div class="text-[11px] text-slate-400 text-center border-t pt-3">
+                &copy; PTASA Edu Portal
+            </div>
         </div>
-    </section>
+    </div>
 
-    <!-- فولڈرز اور کیٹیگریز کا سیکشن -->
-    <main class="flex-grow max-w-5xl mx-auto px-4 py-10 w-full">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                <span class="w-2.5 h-6 bg-indigo-600 rounded-full"></span>
-                Technology Categories & Folders
-            </h2>
-            <span class="text-xs text-slate-400 bg-slate-200 px-2.5 py-1 rounded-md font-medium">Updated 2026</span>
-        </div>
-
-        <!-- فولڈر گرید -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            
-            <!-- کیٹیگری 1 -->
-            <div onclick="alert('Opening Civil Technology Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    📁
-                </div>
-                <div>
-                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Civil Technology</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
-                </div>
-            </div>
-
-            <!-- کیٹیگری 2 -->
-            <div onclick="alert('Opening Electrical Technology Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    📁
-                </div>
-                <div>
-                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Electrical Technology</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
-                </div>
-            </div>
-
-            <!-- کیٹیگری 3 -->
-            <div onclick="alert('Opening Mechanical Technology Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    📁
-                </div>
-                <div>
-                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Mechanical Technology</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
-                </div>
-            </div>
-
-            <!-- کیٹیگری 4 -->
-            <div onclick="alert('Opening CIT Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    📁
-                </div>
-                <div>
-                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Computer Information Tech</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
-                </div>
-            </div>
-
-            <!-- کیٹیگری 5 -->
-            <div onclick="alert('Opening Electronics Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    📁
-                </div>
-                <div>
-                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Electronics Technology</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
-                </div>
-            </div>
-
-            <!-- کیٹیگری 6 -->
-            <div onclick="alert('Opening Past Papers Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
-                    📁
-                </div>
-                <div>
-                    <h3 class="font-bold text-slate-900 text-sm">DAE Past Papers & Handbooks</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">All Years Solved Papers</p>
-                </div>
-            </div>
-
+    <!-- Main Content Area -->
+    <main class="max-w-3xl mx-auto px-4 py-6 flex-grow w-full">
+        
+        <!-- Breadcrumb -->
+        <div class="bg-slate-100 p-2.5 rounded text-xs text-slate-600 mb-6 border border-slate-200" id="breadcrumb">
+            <span class="font-semibold text-emerald-700">Home</span> / DAE - Diploma of Associate Engineer
         </div>
 
-        <!-- نوٹ باکس -->
-        <div class="mt-10 bg-amber-50 border border-amber-200 p-4 rounded-2xl text-center text-xs text-slate-700 space-y-1">
+        <h1 id="pageTitle" class="text-lg sm:text-xl font-bold mb-6 text-slate-900 border-b pb-2">
+            PBTE | DAE - DIPLOMA OF ASSOCIATE ENGINEER
+        </h1>
+
+        <!-- Dynamic Folder / Content Container -->
+        <div id="contentBox" class="space-y-1 divide-y divide-slate-100 border-t border-b border-slate-200 py-2">
+            <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- Note Section -->
+        <div class="mt-10 bg-amber-50 border border-amber-200 p-4 rounded text-center text-xs text-slate-700 space-y-2">
             <h4 class="text-red-600 font-bold uppercase tracking-wider">NOTE</h4>
             <p>If you find any mistake in them, do tell in the comment, so that it can be corrected.</p>
-            <p class="font-medium text-slate-900 mt-1">If you face any issues feel free to contact me on WhatsApp: <span class="text-emerald-700 font-bold">03129671316</span></p>
+            <p class="font-medium text-slate-900">If you face any issues feel free to contact me on WhatsApp</p>
+            <p class="text-emerald-700 font-bold text-sm">03129671316, 03085507292</p>
         </div>
+
     </main>
 
-    <!-- فوٹر -->
-    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400">
-        <p>&copy; 2026 DAE Study Portal. Designed with ❤️ for Students. Hosted on GitHub Pages.</p>
+    <!-- Footer -->
+    <footer class="max-w-3xl mx-auto px-4 py-6 text-center text-xs text-slate-400 border-t border-slate-100 mt-10 w-full">
+        &copy; 2026 PTASA Edu Portal. All rights reserved.
     </footer>
 
+    <script>
+        // App State
+        let currentView = 'home'; // home, techList, yearList, subjectList, detailView
+        let selectedTech = '';
+        let selectedYear = '';
+        let selectedSubject = '';
+
+        const technologies = [
+            "PBTE DAE Civil Technology",
+            "PBTE DAE Electrical Technology",
+            "PBTE DAE Mechanical Technology",
+            "PBTE DAE Electronics Technology",
+            "PBTE DAE Architecture Technology",
+            "PBTE DAE Printing & Graphics Art Technology",
+            "PBTE DAE Automation Technology",
+            "PBTE DAE Bio-Medical Technology",
+            "PBTE DAE Chemical Technology",
+            "Civil Technology (with Specialization in Quantity Survey)",
+            "PBTE DAE Computer Information Technology"
+        ];
+
+        function render() {
+            const box = document.getElementById('contentBox');
+            const title = document.getElementById('pageTitle');
+            const breadcrumb = document.getElementById('breadcrumb');
+            box.innerHTML = '';
+
+            if (currentView === 'home') {
+                breadcrumb.innerHTML = `<span class="font-semibold text-emerald-700">Home</span> / DAE - Diploma of Associate Engineer`;
+                title.textContent = "PBTE | DAE - DIPLOMA OF ASSOCIATE ENGINEER";
+                
+                // Show list of main categories matching PTASA
+                let html = `
+                    <div onclick="openDAEHome()" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                        <i class="fas fa-folder text-amber-400 text-lg"></i>
+                        <span class="text-sm font-medium text-slate-800">DAE - Diploma of Associate Engineer</span>
+                    </div>
+                    <div onclick="alert('DAE Hand Book')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                        <i class="fas fa-folder text-amber-400 text-lg"></i>
+                        <span class="text-sm font-medium text-slate-800">DAE Hand Book</span>
+                    </div>
+                    <div onclick="alert('Past Papers')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                        <i class="fas fa-folder text-amber-400 text-lg"></i>
+                        <span class="text-sm font-medium text-slate-800">Past Papers</span>
+                    </div>
+                    <div onclick="alert('PPSC')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                        <i class="fas fa-folder text-amber-400 text-lg"></i>
+                        <span class="text-sm font-medium text-slate-800">PPSC</span>
+                    </div>
+                    <div onclick="alert('Notifications')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                        <i class="fas fa-folder text-amber-400 text-lg"></i>
+                        <span class="text-sm font-medium text-slate-800">Notifications</span>
+                    </div>
+                `;
+                box.innerHTML = html;
+            } 
+            else if (currentView === 'techList') {
+                breadcrumb.innerHTML = `<a href="javascript:void(0)" onclick="goHome()" class="text-emerald-700">Home</a> / <span class="font-semibold text-emerald-700">DAE</span>`;
+                title.textContent = "PBTE | DAE - TECHNOLOGIES";
+                
+                technologies.forEach(tech => {
+                    box.innerHTML += `
+                        <div onclick="selectTech('${tech}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                            <i class="fas fa-folder text-amber-400 text-lg"></i>
+                            <span class="text-sm font-medium text-slate-800">${tech}</span>
+                        </div>
+                    `;
+                });
+            }
+            else if (currentView === 'yearList') {
+                breadcrumb.innerHTML = `<a href="javascript:void(0)" onclick="goHome()" class="text-emerald-700">Home</a> / <a href="javascript:void(0)" onclick="openDAEHome()" class="text-emerald-700">DAE</a> / <span class="font-semibold text-emerald-700">${selectedTech}</span>`;
+                title.textContent = selectedTech.toUpperCase();
+
+                ['FIRST YEAR', 'SECOND YEAR', 'THIRD YEAR'].forEach(yr => {
+                    box.innerHTML += `
+                        <div onclick="selectYear('${yr}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                            <i class="fas fa-folder text-amber-400 text-lg"></i>
+                            <span class="text-sm font-medium text-slate-800">${selectedTech.toUpperCase()} ${yr}</span>
+                        </div>
+                    `;
+                });
+            }
+            else if (currentView === 'subjectList') {
+                breadcrumb.innerHTML = `<a href="javascript:void(0)" onclick="goHome()" class="text-emerald-700">Home</a> / <span class="font-semibold text-emerald-700">${selectedYear}</span>`;
+                title.textContent = `${selectedTech} - ${selectedYear}`;
+
+                let html = `<div class="font-bold text-xs text-emerald-800 uppercase tracking-wider py-2 bg-emerald-50 px-2 rounded mt-2">📚 (New Course) Updated...</div>`;
+                
+                ['TTQ 111 - Tarjuma-Tul-Quran', 'GEN 111 - Islamiat & Pak Studies', 'ENG 112 - Technical English (R-26)', 'MATH 113 - Applied Mathematics-I', 'CIVIL 124 - Civil Engineering Surveying', 'CIVIL 153 - Civil Engineering Materials'].forEach(sub => {
+                    html += `
+                        <div onclick="selectSubject('${sub}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                            <i class="fas fa-folder text-amber-400 text-lg"></i>
+                            <span class="text-sm font-medium text-slate-800">${sub}</span>
+                        </div>
+                    `;
+                });
+
+                html += `<div class="font-bold text-xs text-slate-700 uppercase tracking-wider py-2 bg-slate-100 px-2 rounded mt-4">📖 (Old Course)</div>`;
+                ['CIVIL 104 - Basic Civil Engineering Surveying', 'CIVIL 113 - Engineering Material & Construction Techniques'].forEach(sub => {
+                    html += `
+                        <div onclick="selectSubject('${sub}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                            <i class="fas fa-folder text-amber-400 text-lg"></i>
+                            <span class="text-sm font-medium text-slate-800">${sub}</span>
+                        </div>
+                    `;
+                });
+                box.innerHTML = html;
+            }
+            else if (currentView === 'detailView') {
+                breadcrumb.innerHTML = `<a href="javascript:void(0)" onclick="goHome()" class="text-emerald-700">Home</a> / <span class="font-semibold text-emerald-700">${selectedSubject}</span>`;
+                title.textContent = selectedSubject;
+
+                ['MCQ', 'Short Questions', 'Long Questions', 'Past Papers', 'Text Book', 'Curriculum'].forEach(item => {
+                    box.innerHTML += `
+                        <div onclick="alert('Opening ${item} for ${selectedSubject}')" class="folder-item flex items-center gap-3 p-3 cursor-pointer transition">
+                            <span class="text-emerald-600 font-bold">•</span>
+                            <span class="text-sm font-medium text-slate-800">${item}</span>
+                        </div>
+                    `;
+                });
+            }
+        }
+
+        function toggleMenu() {
+            const drawer = document.getElementById('drawerMenu');
+            drawer.classList.toggle('hidden');
+        }
+
+        function goHome() {
+            currentView = 'home';
+            render();
+        }
+
+        function openDAEHome() {
+            currentView = 'techList';
+            render();
+        }
+
+        function selectTech(tech) {
+            selectedTech = tech;
+            currentView = 'yearList';
+            render();
+        }
+
+        function selectYear(yr) {
+            selectedYear = yr;
+            currentView = 'subjectList';
+            render();
+        }
+
+        function selectSubject(sub) {
+            selectedSubject = sub;
+            currentView = 'detailView';
+            render();
+        }
+
+        // Initial call
+        render();
+    </script>
 </body>
 </html>
