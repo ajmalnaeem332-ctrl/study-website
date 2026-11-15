@@ -3,262 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduPortal PK - Civil Technology & DAE Study Portal</title>
+    <title>DAE Study Portal - Cute & Clean Design</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        .folder-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08); }
     </style>
 </head>
-<body class="text-slate-800">
+<body class="text-slate-800 flex flex-col min-h-screen">
 
-    <!-- Top Bar -->
-    <div class="bg-emerald-900 text-emerald-50 text-xs py-2 px-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <span>📚 PBTE DAE Civil Technology Portal - Chapter & Subject Wise MCQs</span>
-            <span>Official Study Network</span>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-40 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
-                    <i class="fas fa-hard-hat"></i>
+    <!-- پیارا سا مینو بار (Cute Menu Bar) -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex justify-between items-center">
+            <!-- لوگو -->
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-indigo-200">
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-extrabold text-slate-900 tracking-tight leading-none">EduPortal <span class="text-emerald-600">PK</span></h1>
-                    <p class="text-[11px] text-slate-500 font-medium">Civil Technology Department</p>
+                    <span class="font-bold text-slate-900 text-base tracking-tight">DAE <span class="text-indigo-600">Portal</span></span>
+                    <span class="block text-[10px] text-slate-400 font-medium uppercase">Study Network</span>
                 </div>
             </div>
-            <nav class="hidden md:flex items-center space-x-2">
-                <button onclick="filterYear('All')" class="px-3 py-1.5 rounded-md text-sm font-semibold text-emerald-700 bg-emerald-50">All Years</button>
-                <button onclick="filterYear('1st Year')" class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-emerald-600 hover:bg-slate-50">Civil 1st Year</button>
-                <button onclick="filterYear('2nd Year')" class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-emerald-600 hover:bg-slate-50">Civil 2nd Year</button>
-                <button onclick="filterYear('3rd Year')" class="px-3 py-1.5 rounded-md text-sm font-medium text-slate-600 hover:text-emerald-600 hover:bg-slate-50">Civil 3rd Year</button>
+
+            <!-- مینو لنکس -->
+            <nav class="hidden md:flex items-center space-x-1">
+                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-indigo-600 bg-indigo-50 transition">Home</a>
+                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 transition">DAE Hand Book</a>
+                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 transition">Past Papers</a>
+                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 transition">PPSC</a>
+                <a href="#" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 transition">Notifications</a>
             </nav>
+
+            <!-- سرچ یا واٹس ایپ بٹن -->
+            <div>
+                <a href="https://wa.me/" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-xl shadow-sm transition flex items-center gap-1.5">
+                    <i class="fab fa-whatsapp text-sm"></i> Contact
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero / Search Section -->
-    <section class="bg-gradient-to-br from-emerald-800 to-teal-900 text-white py-10 px-4">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-2xl sm:text-3xl font-extrabold mb-3">Civil Technology DAE Study Material & Chapter MCQs</h2>
-            <p class="text-emerald-100 text-sm mb-6">Select your year or search specific subject codes (e.g., CIVIL-113, MATH-113)</p>
-            
-            <div class="relative max-w-xl mx-auto">
-                <div class="flex items-center bg-white rounded-xl shadow-lg overflow-hidden p-1">
-                    <input type="text" id="searchInput" onkeyup="searchSubjects()" placeholder="Search subject (e.g., Surveying, Concrete, Math)..." class="w-full py-2 px-4 text-slate-800 text-sm focus:outline-none">
-                    <button class="bg-emerald-600 text-white px-5 py-2 rounded-lg text-sm font-semibold">Search</button>
-                </div>
-            </div>
+    <!-- مین ہیرو سیکشن -->
+    <section class="bg-gradient-to-r from-indigo-600 to-violet-600 text-white py-12 px-4 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-2xl sm:text-3xl font-bold mb-2">PBTE | DAE Study Materials & Folders</h1>
+            <p class="text-indigo-100 text-xs sm:text-sm">Select your technology folder below to explore years, subjects, notes, and chapter-wise MCQs.</p>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 py-10">
-        <div class="flex justify-between items-center border-b border-slate-200 pb-3 mb-6">
-            <h3 id="sectionTitle" class="text-lg font-bold text-slate-800 flex items-center gap-2">
-                <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
-                Civil Technology Subjects & Chapter MCQs
-            </h3>
-            <span id="resultCount" class="text-xs font-semibold text-slate-500 bg-slate-200 px-2.5 py-1 rounded-md">Showing subjects</span>
+    <!-- فولڈرز اور کیٹیگریز کا سیکشن -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-10 w-full">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                <span class="w-2.5 h-6 bg-indigo-600 rounded-full"></span>
+                Technology Categories & Folders
+            </h2>
+            <span class="text-xs text-slate-400 bg-slate-200 px-2.5 py-1 rounded-md font-medium">Updated 2026</span>
         </div>
 
-        <!-- Cards Grid -->
-        <div id="subjectsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Dynamic Injection -->
+        <!-- فولڈر گرید -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            
+            <!-- کیٹیگری 1 -->
+            <div onclick="alert('Opening Civil Technology Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
+                    📁
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Civil Technology</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
+                </div>
+            </div>
+
+            <!-- کیٹیگری 2 -->
+            <div onclick="alert('Opening Electrical Technology Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
+                    📁
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Electrical Technology</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
+                </div>
+            </div>
+
+            <!-- کیٹیگری 3 -->
+            <div onclick="alert('Opening Mechanical Technology Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
+                    📁
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Mechanical Technology</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
+                </div>
+            </div>
+
+            <!-- کیٹیگری 4 -->
+            <div onclick="alert('Opening CIT Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
+                    📁
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Computer Information Tech</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
+                </div>
+            </div>
+
+            <!-- کیٹیگری 5 -->
+            <div onclick="alert('Opening Electronics Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
+                    📁
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">PBTE DAE Electronics Technology</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">1st, 2nd & 3rd Year Folders</p>
+                </div>
+            </div>
+
+            <!-- کیٹیگری 6 -->
+            <div onclick="alert('Opening Past Papers Folder...')" class="folder-card bg-white p-5 rounded-2xl border border-slate-200 cursor-pointer transition shadow-sm flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-500 flex items-center justify-center text-2xl flex-shrink-0">
+                    📁
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">DAE Past Papers & Handbooks</h3>
+                    <p class="text-xs text-slate-400 mt-0.5">All Years Solved Papers</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- نوٹ باکس -->
+        <div class="mt-10 bg-amber-50 border border-amber-200 p-4 rounded-2xl text-center text-xs text-slate-700 space-y-1">
+            <h4 class="text-red-600 font-bold uppercase tracking-wider">NOTE</h4>
+            <p>If you find any mistake in them, do tell in the comment, so that it can be corrected.</p>
+            <p class="font-medium text-slate-900 mt-1">If you face any issues feel free to contact me on WhatsApp: <span class="text-emerald-700 font-bold">03129671316</span></p>
         </div>
     </main>
 
-    <!-- Modal for Chapter MCQs -->
-    <div id="chapterModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="bg-emerald-700 text-white px-6 py-4 flex justify-between items-center">
-                <div>
-                    <span id="modalYear" class="text-[10px] uppercase tracking-wider bg-emerald-900 px-2 py-0.5 rounded font-semibold">Year</span>
-                    <h3 id="modalTitle" class="text-lg font-bold mt-1">Subject Title</h3>
-                </div>
-                <button onclick="closeModal()" class="text-white/80 hover:text-white text-xl"><i class="fas fa-times"></i></button>
-            </div>
-            <div id="modalBody" class="p-6 overflow-y-auto text-sm text-slate-700 space-y-4">
-                <!-- Chapters loaded dynamically -->
-            </div>
-            <div class="bg-slate-50 px-6 py-3 border-t border-slate-200 flex justify-between items-center">
-                <span class="text-xs text-slate-500"><i class="fas fa-file-pdf text-red-500 mr-1"></i> Chapter-wise PDF Notes</span>
-                <button onclick="closeModal()" class="px-4 py-2 rounded-lg text-xs font-semibold bg-emerald-600 text-white">Close</button>
-            </div>
-        </div>
-    </div>
+    <!-- فوٹر -->
+    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400">
+        <p>&copy; 2026 DAE Study Portal. Designed with ❤️ for Students. Hosted on GitHub Pages.</p>
+    </footer>
 
-    <script>
-        const civilData = [
-            {
-                id: 1,
-                title: "CIVIL-113 Engineering Drawing & Graphics",
-                year: "1st Year",
-                code: "CIVIL-113",
-                desc: "Fundamentals of technical drawing, lettering, geometrical constructions, and building plans.",
-                chapters: [
-                    { name: "Chapter 1: Introduction to Drawing Instruments", mcqs: 35, notes: "Brief theory & lines types" },
-                    { name: "Chapter 2: Geometrical Constructions", mcqs: 45, notes: "Angles, triangles & polygons" },
-                    { name: "Chapter 3: Orthographic Projections", mcqs: 50, notes: "First and third angle projection" }
-                ]
-            },
-            {
-                id: 2,
-                title: "CIVIL-123 Surveying-I",
-                year: "1st Year",
-                code: "CIVIL-123",
-                desc: "Chain surveying, compass surveying, plane table surveying, and leveling principles.",
-                chapters: [
-                    { name: "Chapter 1: Chain Surveying Fundamentals", mcqs: 40, notes: "Errors and chaining obstacles" },
-                    { name: "Chapter 2: Compass Surveying & Bearings", mcqs: 60, notes: "Meridians, FB and BB calculations" },
-                    { name: "Chapter 3: Leveling & Contour Mapping", mcqs: 55, notes: "Height of instrument method" }
-                ]
-            },
-            {
-                id: 3,
-                title: "CIVIL-132 Engineering Materials",
-                year: "1st Year",
-                code: "CIVIL-132",
-                desc: "Properties of stones, bricks, lime, cement, timber, and modern building materials.",
-                chapters: [
-                    { name: "Chapter 1: Bricks & Clay Products", mcqs: 30, notes: "Classification and testing of bricks" },
-                    { name: "Chapter 2: Cement & Concrete", mcqs: 65, notes: "Manufacturing, types and setting times" }
-                ]
-            },
-            {
-                id: 4,
-                title: "CIVIL-214 Surveying-II (Advanced)",
-                year: "2nd Year",
-                code: "CIVIL-214",
-                desc: "Theodolite traversing, tacheometry, curves, and modern total station surveying.",
-                chapters: [
-                    { name: "Chapter 1: Theodolite Traversing", mcqs: 45, notes: "Measurement of horizontal/vertical angles" },
-                    { name: "Chapter 2: Tacheometric Surveying", mcqs: 35, notes: "Distance and elevation determination" }
-                ]
-            },
-            {
-                id: 5,
-                title: "CIVIL-223 Concrete Technology & RCC",
-                year: "2nd Year",
-                code: "CIVIL-223",
-                desc: "Reinforced cement concrete design, steel reinforcement placement, and formwork.",
-                chapters: [
-                    { name: "Chapter 1: Properties of Fresh & Hardened Concrete", mcqs: 50, notes: "Slump test and compressive strength" },
-                    { name: "Chapter 2: Design of Beams & Slabs", mcqs: 40, notes: "Working stress method fundamentals" }
-                ]
-            },
-            {
-                id: 6,
-                title: "CIVIL-313 Quantity Surveying & Cost Estimation",
-                year: "3rd Year",
-                code: "CIVIL-313",
-                desc: "Detailed estimation of buildings, roads, water supply, and sanitary installations.",
-                chapters: [
-                    { name: "Chapter 1: Methods of Taking Out Quantities", mcqs: 40, notes: "Center line and long wall-short wall method" },
-                    { name: "Chapter 2: Earthwork Calculation for Roads", mcqs: 30, notes: "Mid-section formula and prismoidal formula" }
-                ]
-            }
-        ];
-
-        let currentYear = 'All';
-
-        function renderSubjects(data) {
-            const container = document.getElementById('subjectsContainer');
-            const countLabel = document.getElementById('resultCount');
-            container.innerHTML = '';
-            countLabel.textContent = `Showing ${data.length} subjects`;
-
-            data.forEach(item => {
-                let chaptersHtml = item.chapters.map(ch => `
-                    <div class="flex justify-between items-center bg-slate-50 p-2 rounded text-xs">
-                        <span class="font-medium text-slate-700">${ch.name}</span>
-                        <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-bold">${ch.mcqs} MCQs</span>
-                    </div>
-                `).join('');
-
-                const card = `
-                    <div class="bg-white rounded-xl border border-slate-200 p-5 card-hover transition flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-center mb-2">
-                                <span class="bg-emerald-100 text-emerald-800 text-[11px] font-bold px-2.5 py-0.5 rounded-md">${item.year}</span>
-                                <span class="bg-slate-100 text-slate-600 text-[11px] font-semibold px-2.5 py-0.5 rounded-md">${item.code}</span>
-                            </div>
-                            <h4 class="text-base font-bold text-slate-900 mb-2">${item.title}</h4>
-                            <p class="text-xs text-slate-600 mb-4">${item.desc}</p>
-                            <div class="space-y-1.5 mb-4">
-                                ${chaptersHtml}
-                            </div>
-                        </div>
-                        <button onclick="openModal(${item.id})" class="w-full bg-slate-900 hover:bg-emerald-600 text-white text-xs font-semibold py-2.5 rounded-lg transition text-center">
-                            <i class="fas fa-book-open mr-1"></i> View Chapters & MCQs
-                        </button>
-                    </div>
-                `;
-                container.innerHTML += card;
-            });
-        }
-
-        function filterYear(year) {
-            currentYear = year;
-            document.getElementById('sectionTitle').innerHTML = `
-                <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
-                Civil Technology - ${year === 'All' ? 'All Years' : year} Subjects
-            `;
-            if (year === 'All') {
-                renderSubjects(civilData);
-            } else {
-                renderSubjects(civilData.filter(s => s.year === year));
-            }
-        }
-
-        function searchSubjects() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = civilData.filter(item => 
-                (currentYear === 'All' || item.year === currentYear) &&
-                (item.title.toLowerCase().includes(query) || item.code.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query))
-            );
-            renderSubjects(filtered);
-        }
-
-        function openModal(id) {
-            const item = civilData.find(s => s.id === id);
-            if (!item) return;
-            document.getElementById('modalYear').textContent = item.year + ' • ' + item.code;
-            document.getElementById('modalTitle').textContent = item.title;
-            
-            let bodyContent = `<h4 class="font-bold text-slate-900 mb-2">Chapter-wise MCQs & Breakdown:</h4><div class="space-y-3">`;
-            item.chapters.forEach((ch, idx) => {
-                bodyContent += `
-                    <div class="bg-emerald-50 border-l-4 border-emerald-600 p-3 rounded">
-                        <strong class="text-slate-900 text-sm">${ch.name}</strong>
-                        <p class="text-xs text-slate-600 mt-1">Topics: ${ch.notes}</p>
-                        <div class="mt-2 text-xs font-semibold text-emerald-700 bg-white inline-block px-2 py-1 rounded border border-emerald-200">
-                            ✨ Total MCQs Available: ${ch.mcqs}
-                        </div>
-                    </div>
-                `;
-            });
-            bodyContent += `</div>`;
-            document.getElementById('modalBody').innerHTML = bodyContent;
-            
-            const modal = document.getElementById('chapterModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('chapterModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        renderSubjects(civilData);
-    </script>
 </body>
 </html>
